@@ -32,7 +32,7 @@ namespace Projekt
         public bool Check()
         {
             MySqlConnection connection = new MySqlConnection(connectionString);
-            MySqlCommand cmd = new MySqlCommand("Select Email from users where Email = " + "'" + Email + "'", connection);
+            MySqlCommand cmd = new MySqlCommand("Select Email from users where Email = '" + Email + "'", connection);
             connection.Open();
             if (cmd.ExecuteScalar() == null)
             {
@@ -72,19 +72,24 @@ namespace Projekt
             {
                 Name = rdr["Name"].ToString();
                 Surname = rdr["Surname"].ToString();
-                Birthday = rdr["Birth"].ToString();
+                Birthday = rdr["Birth"].ToString().Substring(0, 10);
                 PhoneNumber = rdr["PhoneNumber"].ToString();
             }
             connection.Close();
             return true;
         }
 
-        public void GetData()
+        public int Add(int a, int b)
         {
-            MySqlConnection connection = new MySqlConnection(connectionString);
-            MySqlCommand cmd = new MySqlCommand("Select * from users where Email = '" + Email + "' and Password = '" + Password + "'", connection);
-            connection.Open();
+            return a + b;
         }
+
+        //public void GetData()
+        //{
+        //    MySqlConnection connection = new MySqlConnection(connectionString);
+        //    MySqlCommand cmd = new MySqlCommand("Select * from users where Email = '" + Email + "' and Password = '" + Password + "'", connection);
+        //    connection.Open();
+        //}
 
     }
 }

@@ -1,0 +1,173 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "Projekt/1.0.0": {
+        "dependencies": {
+          "Prism.Core": "8.1.97",
+          "PropertyChanged.Fody": "3.4.0",
+          "MySql.Data": "8.0.28.0"
+        },
+        "runtime": {
+          "Projekt.dll": {}
+        }
+      },
+      "Fody/6.5.1": {},
+      "Prism.Core/8.1.97": {
+        "runtime": {
+          "lib/net5.0/Prism.dll": {
+            "assemblyVersion": "8.1.97.5141",
+            "fileVersion": "8.1.97.5141"
+          }
+        }
+      },
+      "PropertyChanged.Fody/3.4.0": {
+        "dependencies": {
+          "Fody": "6.5.1"
+        },
+        "runtime": {
+          "lib/netstandard2.1/PropertyChanged.dll": {
+            "assemblyVersion": "3.4.0.0",
+            "fileVersion": "3.4.0.0"
+          }
+        }
+      },
+      "MySql.Data/8.0.28.0": {
+        "runtime": {
+          "MySql.Data.dll": {
+            "assemblyVersion": "8.0.28.0",
+            "fileVersion": "8.0.28.0"
+          }
+        }
+      },
+      "Google.Protobuf/3.14.0.0": {
+        "runtime": {
+          "Google.Protobuf.dll": {
+            "assemblyVersion": "3.14.0.0",
+            "fileVersion": "3.14.0.0"
+          }
+        }
+      },
+      "ZstdNet/1.4.5.0": {
+        "runtime": {
+          "ZstdNet.dll": {
+            "assemblyVersion": "1.4.5.0",
+            "fileVersion": "1.4.5.0"
+          }
+        }
+      },
+      "K4os.Compression.LZ4.Streams/1.2.6.0": {
+        "runtime": {
+          "K4os.Compression.LZ4.Streams.dll": {
+            "assemblyVersion": "1.2.6.0",
+            "fileVersion": "1.2.6.0"
+          }
+        }
+      },
+      "BouncyCastle.Crypto/1.8.5.0": {
+        "runtime": {
+          "BouncyCastle.Crypto.dll": {
+            "assemblyVersion": "1.8.5.0",
+            "fileVersion": "1.8.19031.1"
+          }
+        }
+      },
+      "Ubiety.Dns.Core/2.2.1.0": {
+        "runtime": {
+          "Ubiety.Dns.Core.dll": {
+            "assemblyVersion": "2.2.1.0",
+            "fileVersion": "2.2.1.0"
+          }
+        }
+      },
+      "K4os.Compression.LZ4/1.2.6.0": {
+        "runtime": {
+          "K4os.Compression.LZ4.dll": {
+            "assemblyVersion": "1.2.6.0",
+            "fileVersion": "1.2.6.0"
+          }
+        }
+      },
+      "K4os.Hash.xxHash/1.0.6.0": {
+        "runtime": {
+          "K4os.Hash.xxHash.dll": {
+            "assemblyVersion": "1.0.6.0",
+            "fileVersion": "1.0.6.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Projekt/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Fody/6.5.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-DEw9rPG5vrpaK4vPPze0f4q6Zd0mfzjGNKy49nrmINkftIHpkyf8KH+uC/qF8y6v1askPWu9NbJS9bkmN5wXaA==",
+      "path": "fody/6.5.1",
+      "hashPath": "fody.6.5.1.nupkg.sha512"
+    },
+    "Prism.Core/8.1.97": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-EP5zrvWddw3eSq25Y7hHnDYdmLZEC2Z/gMrvmHzUuLbitmA1UaS7wQUlSwNr9Km8lzJNCvytFnaGBEFukHgoHg==",
+      "path": "prism.core/8.1.97",
+      "hashPath": "prism.core.8.1.97.nupkg.sha512"
+    },
+    "PropertyChanged.Fody/3.4.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-IAZyq0uolKo2WYm4mjx+q7A8fSGFT0x2e1s3y+ODn4JI0kqTDoo9GF2tdaypUzRFJZfdMxfC5HZW9QzdJLtOnA==",
+      "path": "propertychanged.fody/3.4.0",
+      "hashPath": "propertychanged.fody.3.4.0.nupkg.sha512"
+    },
+    "MySql.Data/8.0.28.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Google.Protobuf/3.14.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ZstdNet/1.4.5.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "K4os.Compression.LZ4.Streams/1.2.6.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "BouncyCastle.Crypto/1.8.5.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Ubiety.Dns.Core/2.2.1.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "K4os.Compression.LZ4/1.2.6.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "K4os.Hash.xxHash/1.0.6.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

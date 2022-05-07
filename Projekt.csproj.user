@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <ApplicationDefinition Update="App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Pages\AccountPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\FlightDetailsPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\FlightsPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\LoginPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\MainPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\RegistrationPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\AccountPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\FlightDetailsPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\FlightsPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\LoginPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\MainPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\RegistrationPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Colors.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Fonts.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Popups.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Texts.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>

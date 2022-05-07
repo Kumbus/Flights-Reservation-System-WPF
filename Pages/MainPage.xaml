@@ -1,4 +1,4 @@
-<Page x:Class="Projekt.MainPage"
+﻿<Page x:Class="Projekt.MainPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -81,7 +81,7 @@
                         </ContentControl>
                     </Popup>
 
-                    <Button Grid.Column="4" Grid.Row="1" Style="{StaticResource SearchButton}" Content="Szukaj"/>
+                    <Button Grid.Column="4" Grid.Row="1" Style="{StaticResource SearchButton}" Content="Szukaj" Command="{Binding SearchFlightsCommand}"/>
 
                 </Grid>
             </ScrollViewer>

@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MySql.Data" Version="8.0.29" />
+    <PackageReference Include="Prism.Core" Version="8.1.97" />
+    <PackageReference Include="PropertyChanged.Fody" Version="3.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Images\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="MySql.Data">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\MySQL\Connector NET 8.0\Assemblies\net6.0\MySql.Data.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

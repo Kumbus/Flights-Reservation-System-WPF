@@ -8,7 +8,89 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AccountPage">
 
-    <Grid>
-        <Button Content="xd"/>
-    </Grid>
+    <Page.DataContext>
+        <local:AccountPageViewModel/>
+    </Page.DataContext>
+
+    <Border Background="{StaticResource WordOrangeBrush}" CornerRadius="10" Margin="10">
+        <Grid>
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                <StackPanel HorizontalAlignment="Center" TextBlock.TextAlignment="Center" Margin="40">
+
+                    <Border Background="{StaticResource ForegroundLightBrush}" 
+                            CornerRadius="10"
+                            Padding="15 50 15 15"
+                            Width="Auto"
+                            MinWidth="330"
+                            MaxWidth="600"
+                            Margin="0">
+
+                        <Grid>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Label Grid.Row="0" Style="{StaticResource BrandText}" Content="Loty"/>
+
+
+                            <StackPanel  Grid.Row="1">
+                                
+                            </StackPanel>
+
+                            <Label Grid.Row="2" Style="{StaticResource BrandText}" Content="Dane"/>
+
+                            <StackPanel Grid.Row="3">
+                                <StackPanel Orientation="Horizontal">
+                                    <Label  Style="{StaticResource NormalText}" Content="Imię: " Margin="20,0,0,0"/>
+                                    <Label Style="{StaticResource NormalText}" Content="{Binding User.Name}"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <Label  Style="{StaticResource NormalText}" Content="Nazwisko: " Margin="20,0,0,0"/>
+                                    <Label Style="{StaticResource NormalText}" Content="{Binding User.Surname}"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <Label  Style="{StaticResource NormalText}"  Content="Email: " Margin="20,0,0,0"/>
+                                    <Label Style="{StaticResource NormalText}" Content="{Binding User.Email}"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <Label  Style="{StaticResource NormalText}" Content="Hasło: " Margin="20,0,0,0"/>
+                                    <Label Style="{StaticResource NormalText}" Content="{Binding User.Password}"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <Label  Style="{StaticResource NormalText}" Content="Data urodzenia: " Margin="20,0,0,0"/>
+                                    <Label Style="{StaticResource NormalText}" Content="{Binding User.Birthday}"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <Label  Style="{StaticResource NormalText}" Content="Numer telefonu: " Margin="20,0,0,0"/>
+                                    <Label Style="{StaticResource NormalText}" Content="{Binding User.PhoneNumber}"/>
+                                </StackPanel>
+
+                                <Button Content="Usuń konto" Style="{StaticResource DeleteAccountButton}" Command="{Binding DeleteAccountCommand}"/>
+
+
+                            </StackPanel>
+
+                        </Grid>
+
+                    </Border>
+
+                    <Button Style="{StaticResource LoginButton}" Content="Powrót do rezerwacji " HorizontalAlignment="Center" Background="Transparent" BorderThickness="0" Command="{Binding BackToMainPageCommand}"/>
+
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Border>
 </Page>

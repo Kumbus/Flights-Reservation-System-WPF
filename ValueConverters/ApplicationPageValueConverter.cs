@@ -26,6 +26,12 @@ namespace Projekt
                 case ApplicationPage.Account:
                     return new AccountPage();
 
+                case ApplicationPage.Flights:
+                    return new FlightsPage();
+                    
+                case ApplicationPage.FlightDetails:
+                    return new FlightDetailsPage();
+
                 default:
                     Debugger.Break();
                     return null;

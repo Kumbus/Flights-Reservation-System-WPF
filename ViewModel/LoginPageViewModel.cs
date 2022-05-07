@@ -29,6 +29,7 @@ namespace Projekt
                 WindowViewModel mainWindow = WindowViewModel.GetInstanceWindowViewModel();
                 WindowViewModel.logged = true;
                 mainWindow.ChangeButtonsTexts();
+                AccountPageViewModel.User = user;
                 mainWindow.CurrentPage = ApplicationPage.Main;
             }
         }

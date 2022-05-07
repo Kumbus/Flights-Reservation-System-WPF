@@ -13,6 +13,7 @@ namespace Projekt
             MinusButtonAdultsCommand = new RelayCommand(SubtractPassenger, CanSubtractAdult);
             MinusButtonChildrenCommand = new RelayCommand(SubtractChild, CanSubtractChild);
             ChangePlacesCommand = new RelayCommand(ChangePlaces, CanChangePlaces);
+            SearchFlightsCommand = new RelayCommand(SearchFlights, CanSearchFlights);
         }
 
         private static MainPageViewModel? instance;
@@ -29,15 +30,15 @@ namespace Projekt
         #region Data i kalendarz
         private DateTime calendarDate { get; set; } = DateTime.Now;
 
-        public string CalendarDateString { get; set; } = DateTime.Now.ToString().Substring(0, 10);
+        public string CalendarDateString { get; set; } = DateTime.Now.ToString("yyyy-MM-dd");
 
         public DateTime CalendarDate
         {
             get { return calendarDate; }
             set
             {
-                CalendarDateString = value.ToString();
-                CalendarDateString = CalendarDateString.Substring(0, 10);
+                CalendarDateString = value.ToString("yyyy-MM-dd");
+                //CalendarDateString = CalendarDateString.Substring(0, 10);
             }
         }
         #endregion
@@ -119,6 +120,26 @@ namespace Projekt
         { 
             return true; 
         }
+        #endregion
+
+        #region Szukanie
+
+        public ICommand SearchFlightsCommand { get; set; }
+
+        private void SearchFlights(object value)
+        {
+            BasicFlight flightToSearch = new BasicFlight(SkadText, DokadText, CalendarDateString, ChildrenNumber + PassengersNumber, PassengersNumber, ChildrenNumber);
+            FlightUse flightUse = new FlightUse();
+            flightUse.Search(flightToSearch);
+            WindowViewModel mainWindow = WindowViewModel.GetInstanceWindowViewModel();
+            mainWindow.CurrentPage = ApplicationPage.Flights;
+        }
+
+        private bool CanSearchFlights(object value)
+        {
+            return true;
+        }
+
         #endregion
 
 

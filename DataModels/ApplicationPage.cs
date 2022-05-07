@@ -1,4 +1,4 @@
-namespace Projekt
+﻿namespace Projekt
 {
 
     public enum ApplicationPage
@@ -8,5 +8,7 @@ namespace Projekt
         Login = 1,
         Registration = 2,
         Account = 3,
+        Flights = 4,
+        FlightDetails =5,
     }
 }
