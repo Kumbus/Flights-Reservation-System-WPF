@@ -9,6 +9,7 @@ namespace Projekt
 {
     public class User
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Email { get; set; }
@@ -70,6 +71,7 @@ namespace Projekt
             MySqlDataReader rdr = cmd.ExecuteReader();
             while (rdr.Read())
             {
+                Id = (int)rdr["ID"];
                 Name = rdr["Name"].ToString();
                 Surname = rdr["Surname"].ToString();
                 Birthday = rdr["Birth"].ToString().Substring(0, 10);
@@ -77,11 +79,6 @@ namespace Projekt
             }
             connection.Close();
             return true;
-        }
-
-        public int Add(int a, int b)
-        {
-            return a + b;
         }
 
         //public void GetData()

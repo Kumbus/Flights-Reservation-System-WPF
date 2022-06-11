@@ -9,6 +9,8 @@ namespace Projekt
 
         public static bool logged = false;
 
+        public static BasicFlight Flight { get; set; }
+
         public string RegisterButtonText { get; set; } = "Zarejestruj się";
         public string LoginButtonText { get; set; } = "Zaloguj się";
         private WindowViewModel()

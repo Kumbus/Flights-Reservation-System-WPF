@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\jakub\Desktop\Wszechswiat\WPF\Flights-Reservation-System-WPF\obj\Debug\net6.0-windows\
+C:\Users\jakub\Desktop\Wszechswiat\WPF\Projekt\obj\Debug\net6.0-windows\
 Projekt
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-C:\Users\jakub\Desktop\Wszechswiat\WPF\Flights-Reservation-System-WPF\App.xaml
-12-1932628307
+C:\Users\jakub\Desktop\Wszechswiat\WPF\Projekt\App.xaml
+161883889163
 
-29409718841
-204764562895
-MainWindow.xaml;Pages\AccountPage.xaml;Pages\FlightDetailsPage.xaml;Pages\FlightsPage.xaml;Pages\LoginPage.xaml;Pages\MainPage.xaml;Pages\RegistrationPage.xaml;Styles\Buttons.xaml;Styles\Colors.xaml;Styles\Fonts.xaml;Styles\Popups.xaml;Styles\Texts.xaml;
+55-1422310091
+202-1694587708
+MainWindow.xaml;Pages\AccountPage.xaml;Pages\FlightDetailsPage.xaml;Pages\FlightsPage.xaml;Pages\LoginPage.xaml;Pages\MainPage.xaml;Pages\PaymentPage.xaml;Pages\RegistrationPage.xaml;Pages\SeatChoicePage.xaml;Pages\SummaryPage.xaml;Pages\ThanksPage.xaml;Styles\Buttons.xaml;Styles\Colors.xaml;Styles\Fonts.xaml;Styles\Popups.xaml;Styles\Texts.xaml;
 
 False
 

@@ -7,6 +7,9 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AccountPage">
+    
+    
+    
 
     <Page.DataContext>
         <local:AccountPageViewModel/>
@@ -40,10 +43,78 @@
 
                             <Label Grid.Row="0" Style="{StaticResource BrandText}" Content="Loty"/>
 
+                            <ItemsControl ItemsSource="{Binding Flights}"  Grid.Row="1">
 
-                            <StackPanel  Grid.Row="1">
-                                
-                            </StackPanel>
+                                <ItemsControl.ItemContainerStyle>
+                                    <Style>
+                                        <Setter Property="Control.Margin" Value="10"/>
+                                        <Setter Property="Control.Background" Value="{StaticResource WordOrangeBrush}"/>
+                                        <Style.Triggers>
+                                            <Trigger Property="Control.IsMouseOver" Value="True">
+
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+
+                                </ItemsControl.ItemContainerStyle>
+
+
+                                <ItemsControl.ItemTemplate >
+
+                                    <DataTemplate>
+
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="0.5*"/>
+                                                <ColumnDefinition Width="0.35*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="0.35*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="0.1*"/>
+                                                <RowDefinition Height="0.1*"/>
+                                                <RowDefinition Height="0.1*"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Border Grid.ColumnSpan="5" Grid.RowSpan="2" Background="{StaticResource WordOrangeBrush}" CornerRadius="10"/>
+
+                                            <Image Grid.Row="0"  Grid.Column="0" Grid.RowSpan="2"  Source="{Binding Airline, Converter={local:AirlineToLogoValueConverter}}" Margin="10"/>
+
+
+                                            <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding DepartureTime}" FontSize="30" Grid.Row="0" Grid.Column="1" />
+
+                                            <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding DestinationTime}" FontSize="30" Grid.Row="0" Grid.Column="3"/>
+
+
+
+                                            <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding DeparturePlace}" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top"/>
+
+                                            <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding DestinationPlace}" Grid.Row="1" Grid.Column="3" VerticalAlignment="Top"/>
+
+
+                                            <Grid Grid.Row="0" Grid.Column="2" Margin="0,20" Grid.RowSpan="2">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="0.01*"/>
+                                                    <RowDefinition Height="1*"/>
+                                                </Grid.RowDefinitions>
+
+                                                <Label Content="{Binding  FlyTime}" HorizontalAlignment="Center"  FontSize="17" />
+                                                <Image Source="C:\Users\jakub\Desktop\Wszechswiat\WPF\Projekt\Images\SamolotDoCzasuNB2.png"/>
+
+                                            </Grid>
+
+                                            <Button Content="Anuluj rezerwację" Style="{StaticResource DeleteAccountButton}" Grid.Row="2" Grid.ColumnSpan="5"/>
+
+                                        </Grid>
+
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+
+
+                            </ItemsControl>
+
 
                             <Label Grid.Row="2" Style="{StaticResource BrandText}" Content="Dane"/>
 
@@ -91,6 +162,9 @@
 
                 </StackPanel>
             </ScrollViewer>
+            
         </Grid>
+        
     </Border>
+    
 </Page>

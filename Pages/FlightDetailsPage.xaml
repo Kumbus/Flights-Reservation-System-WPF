@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Projekt"
+      xmlns:local="clr-namespace:Projekt" 
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="FlightDetailsPage">
@@ -13,48 +13,75 @@
     </Page.DataContext>
 
 
-    <ScrollViewer >
-        <Grid Margin="10">
+    <ScrollViewer>
+        <Border Margin="10" Background="{StaticResource WordOrangeBrush}" CornerRadius="10">
+            <Grid Margin="10" HorizontalAlignment="Stretch" >
 
 
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.5*"/>
-                <ColumnDefinition Width="0.35*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="0.35*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*" />
+                    <ColumnDefinition Width="0.7*"/>
+                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition Width="1.5*"/>
+                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition Width="0.5*"/>
+                </Grid.ColumnDefinitions>
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="143*"/>
-                <RowDefinition Height="126*"/>
-                <RowDefinition Height="17*"/>
-                <RowDefinition Height="143*"/>
-            </Grid.RowDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.01*"/>
+                    <RowDefinition Height="0.01*"/>
+                    <RowDefinition Height="0.005*"/>
+                    <RowDefinition Height="0.3*"/>
+                    <RowDefinition Height="0.005*"/>
 
-            <Border Grid.ColumnSpan="5" Grid.RowSpan="4" Background="{StaticResource WordOrangeBrush}" CornerRadius="10"/>
+                </Grid.RowDefinitions>
 
-            <Image Grid.Row="0" Grid.RowSpan="2" Source="{Binding Flight.Airline, Converter={local:AirlineToLogoValueConverter}}"  MaxHeight="80" Margin="10,-50,10,76"/>
+                <Border Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="5" Background="{StaticResource BackgroundVeryLightBrush}" CornerRadius="10"/>
 
-            <StackPanel Grid.Row="0" Margin="119,20,238,0" Grid.ColumnSpan="3">
-                <Label Style="{StaticResource NormalText}" Content="{Binding Flight.DepartureTime}"/>
-                <Label Style="{StaticResource NormalText}" Content="{Binding  Flight.DeparturePlace}"/>
-            </StackPanel>
-
-            <StackPanel Grid.Column="2" Grid.Row="0" Margin="0,20,0,0">
-                <Label Content="{Binding  Flight.FlyTime}" HorizontalAlignment="Center" Margin="0,0,0,-30" FontSize="17"/>
-                <Image Source="C:\Users\jakub\Desktop\Wszechswiat\WPF\Projekt\Images\SamolotDoCzasuNB2.png"/>
-            </StackPanel>
-
-            <StackPanel Grid.Column="2" Grid.Row="0" Margin="238,20,238,0" Grid.ColumnSpan="3">
-                <Label Style="{StaticResource NormalText}" Content="{Binding  Flight.DestinationTime}" />
-                <Label Style="{StaticResource NormalText}" Content="{Binding  Flight.DestinationPlace}" />
-            </StackPanel>
-
-        </Grid>
+                <Image Grid.Row="0"  Grid.Column="1" Grid.RowSpan="2"  Source="{Binding Flight.Airline, Converter={local:AirlineToLogoValueConverter}}" Margin="10"/>
 
 
+                <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding Flight.DepartureTime}" FontSize="30" Grid.Row="0" Grid.Column="2" />
+
+                <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding Flight.DestinationTime}" FontSize="30" Grid.Row="0" Grid.Column="4"/>
+
+
+
+                <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding Flight.DeparturePlace}" Grid.Row="1" Grid.Column="2" VerticalAlignment="Top"/>
+
+                <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding Flight.DestinationPlace}" Grid.Row="1" Grid.Column="4" VerticalAlignment="Top"/>
+
+
+                <Grid Grid.Row="0" Grid.Column="3" Margin="0,20" Grid.RowSpan="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.01*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    
+                    <Label Content="{Binding  Flight.FlyTime}" HorizontalAlignment="Center"  FontSize="17" />
+                    <Image Source="C:\Users\jakub\Desktop\Wszechswiat\WPF\Projekt\Images\SamolotDoCzasuNB2.png"/>
+                    
+                </Grid>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" VerticalAlignment="Top" Margin="15,0" >
+                    <Button Style="{StaticResource ClassButton}" Content="{Binding FlightClasses[0].NameAndPrice}" Command="{Binding ChangeDescriptionCommand}" CommandParameter="0" />
+                    <Button Style="{StaticResource ClassButton}" Content="{Binding FlightClasses[1].NameAndPrice}" Command="{Binding ChangeDescriptionCommand}" CommandParameter="1"/>
+                    <Button Style="{StaticResource ClassButton}" Content="{Binding FlightClasses[2].NameAndPrice}" Command="{Binding ChangeDescriptionCommand}" CommandParameter="2"/>
+                    <Button Style="{StaticResource ClassButton}" Content="{Binding FlightClasses[3].NameAndPrice}" Command="{Binding ChangeDescriptionCommand}" CommandParameter="3" Visibility="{Binding Button4Visibility}"/>
+                </StackPanel>
+                
+                <Label Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="4" Content="{Binding Description}" Style="{StaticResource DescribeLabel}"  FontWeight="Light"/>
+
+                <Button Style="{StaticResource SearchButton}" Command="{Binding GoToSeatChoiceCommand}" Content="Przejdź do wyboru miejsca" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="4" Margin="15, 10"/>
+            </Grid>
+
+        </Border>
 
     </ScrollViewer>
+
 </Page>
+
+
+
+

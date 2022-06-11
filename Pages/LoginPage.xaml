@@ -11,10 +11,9 @@
     <Page.DataContext>
         <local:LoginPageViewModel/>
     </Page.DataContext>
-
-    <Border Background="{StaticResource WordOrangeBrush}" CornerRadius="10" Margin="10">
-        <Grid>
-            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+    <ScrollViewer>
+        <Border Background="{StaticResource WordOrangeBrush}" CornerRadius="10" Margin="10">
+            <Grid>
                 <StackPanel HorizontalAlignment="Center" TextBlock.TextAlignment="Center" Margin="40">
 
                     <Border Background="{StaticResource ForegroundLightBrush}" 
@@ -47,7 +46,7 @@
                     <Button Style="{StaticResource LoginButton}" Content="Powrót do rezerwacji " HorizontalAlignment="Center" Background="Transparent" BorderThickness="0" Command="{Binding BackToMainPageCommand}"/>
 
                 </StackPanel>
-            </ScrollViewer>
-        </Grid>
-    </Border>
+            </Grid>
+         </Border>
+    </ScrollViewer>
 </Page>

@@ -17,10 +17,6 @@
         <Grid>
             <ItemsControl ItemsSource="{Binding Flights}" >
 
-
-
-
-
                 <ItemsControl.ItemContainerStyle>
                     <Style>
                         <Setter Property="Control.Margin" Value="10"/>
@@ -49,31 +45,39 @@
                             </Grid.ColumnDefinitions>
 
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="0.1*"/>
+                                <RowDefinition Height="0.1*"/>
                             </Grid.RowDefinitions>
 
                             <Border Grid.ColumnSpan="5" Grid.RowSpan="3" Background="{StaticResource WordOrangeBrush}" CornerRadius="10"/>
 
-                            <Image Grid.Row="0" Grid.RowSpan="2" Source="{Binding Airline, Converter={local:AirlineToLogoValueConverter}}"  MaxHeight="80" Margin="10"/>
+                            <Image Grid.Row="0"  Grid.Column="0" Grid.RowSpan="2"  Source="{Binding Airline, Converter={local:AirlineToLogoValueConverter}}" Margin="10"/>
 
-                            <StackPanel Grid.Column="1" Grid.Row="0" Margin="0,20,0,0">
-                                <Label Style="{StaticResource NormalText}" Content="{Binding DepartureTime}"/>
-                                <Label Style="{StaticResource NormalText}" Content="{Binding DeparturePlace}"/>
-                            </StackPanel>
 
-                            <StackPanel Grid.Column="2" Grid.Row="0" Margin="0,20,0,0">
-                                <Label Content="{Binding FlyTime}" HorizontalAlignment="Center" Margin="0,0,0,-30" FontSize="17"/>
+                            <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding DepartureTime}" FontSize="30" Grid.Row="0" Grid.Column="1" />
+
+                            <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding DestinationTime}" FontSize="30" Grid.Row="0" Grid.Column="3"/>
+
+
+
+                            <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding DeparturePlace}" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top"/>
+
+                            <TextBlock Style="{StaticResource NormalTextBlock}" Text="{Binding DestinationPlace}" Grid.Row="1" Grid.Column="3" VerticalAlignment="Top"/>
+
+
+                            <Grid Grid.Row="0" Grid.Column="2" Margin="0,20" Grid.RowSpan="2">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="0.01*"/>
+                                    <RowDefinition Height="1*"/>
+                                </Grid.RowDefinitions>
+
+                                <Label Content="{Binding  FlyTime}" HorizontalAlignment="Center"  FontSize="17" />
                                 <Image Source="C:\Users\jakub\Desktop\Wszechswiat\WPF\Projekt\Images\SamolotDoCzasuNB2.png"/>
-                            </StackPanel>
 
-                            <StackPanel Grid.Column="3" Grid.Row="0" Margin="0,20,0,0">
-                                <Label Style="{StaticResource NormalText}" Content="{Binding DestinationTime}" />
-                                <Label Style="{StaticResource NormalText}" Content="{Binding DestinationPlace}" />
-                            </StackPanel>
+                            </Grid>
 
-                            <StackPanel Grid.Column="4" Grid.Row="0" Margin="0,15,20,15"  >
+
+                            <StackPanel Grid.Column="4" Grid.Row="0" Grid.RowSpan="2" Margin="0,15,20,15"  >
                                 <Label Style="{StaticResource NormalText}" Content="{Binding PriceString}" HorizontalAlignment="Center" FontStyle="Italic" FontWeight="ExtraLight"/>
                                 <Button Style="{StaticResource SearchButton}" Content="Szczegóły i zakup" HorizontalAlignment="Center" FontSize="20" Margin="0" Tag="{Binding FlightNumber}"
                                         Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}, Path=DataContext.GoToDetailsCommand}" 
@@ -81,14 +85,6 @@
                             </StackPanel>
 
                         </Grid>
-
-                        <DataTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-
-                            </Trigger>
-                        </DataTemplate.Triggers>
-
-
 
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>

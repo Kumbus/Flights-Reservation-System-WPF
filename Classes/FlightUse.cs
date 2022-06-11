@@ -59,7 +59,7 @@ namespace Projekt
 
         }
 
-        public static object FindOne()
+        public static BasicFlight FindOne()
         {
             for(int i = 0; i < Flights.Count; i++)
             {

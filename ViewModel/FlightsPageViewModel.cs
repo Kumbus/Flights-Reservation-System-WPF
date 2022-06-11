@@ -21,9 +21,10 @@ namespace Projekt
 
         private void GoToDetails(object value)
         {
+            FlightUse.Indeks = value as string;
             WindowViewModel mainWindow = WindowViewModel.GetInstanceWindowViewModel();
             mainWindow.CurrentPage = ApplicationPage.FlightDetails;
-            FlightUse.Indeks = value as string;
+            
         }
 
         private bool CanGoToDetails(object value)

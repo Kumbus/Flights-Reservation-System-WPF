@@ -94,7 +94,7 @@ namespace Projekt
                 WrongData = "Hasła nie są identyczne";
                 return false;
             }
-            else if(!(checkPhoneNumber1.IsMatch(PhoneNumber) || checkPhoneNumber1.IsMatch(PhoneNumber)))
+            else if(!(checkPhoneNumber1.IsMatch(PhoneNumber) || checkPhoneNumber2.IsMatch(PhoneNumber)))
             {
                 WrongData = "Numer telefonu jest nieprawidłowy";
                 return false;

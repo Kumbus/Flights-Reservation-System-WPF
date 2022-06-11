@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,13 +12,18 @@ namespace Projekt
 {
     public class AccountPageViewModel : BaseViewModel
     {
+        public static User? User { get; set; }
+
+        public ObservableCollection<BasicFlight> Flights { get; set; }
 
         public AccountPageViewModel()
         {
+            DataBaseController controller = new DataBaseController();
+            Flights = controller.AddFlightToAccount(User.Id);
             BackToMainPageCommand = new RelayCommand(BackToMainPage, CanBackToMainPage);
             DeleteAccountCommand = new RelayCommand(DeleteAccount, CanDeleteAccount);
         }
-        public static User? User { get; set; }
+        
 
         public ICommand DeleteAccountCommand { get; set; }
 

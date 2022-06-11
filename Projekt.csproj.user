@@ -22,7 +22,19 @@
     <Compile Update="Pages\MainPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Pages\PaymentPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Pages\RegistrationPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\SeatChoicePage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\SummaryPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\ThanksPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -45,7 +57,19 @@
     <Page Update="Pages\MainPage.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Pages\PaymentPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Pages\RegistrationPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\SeatChoicePage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\SummaryPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\ThanksPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Styles\Colors.xaml">
