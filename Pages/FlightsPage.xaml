@@ -15,7 +15,15 @@
 
     <ScrollViewer >
         <Grid>
-            <ItemsControl ItemsSource="{Binding Flights}" >
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Content="Powrót" Style="{StaticResource GoBackButton}" VerticalAlignment="Top" Margin="20" Command="{Binding GoBackCommand}"/>
+            <ItemsControl ItemsSource="{Binding Flights}" Grid.Column="1">
 
                 <ItemsControl.ItemContainerStyle>
                     <Style>

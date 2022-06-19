@@ -2,11 +2,10 @@
 {
     public class Emirates_EconomyPremium : Emirates
     {
-        public new string NameAndPrice { get; set; }
-        public new string Name { get; set; } = "Klasa ekonomiczna Premium";
         public Emirates_EconomyPremium(BasicFlight bf) : base(bf)
         {
-            NameAndPrice = "Klasa ekonomiczna Premium " + GetPrice(passengersNumber, childrenNumber) + " zł";
+            Name = "Klasa ekonomiczna Premium";
+            NameAndPrice = "Ekonomiczna Premium " + GetPrice(passengersNumber, childrenNumber) + " zł";
         }
 
         public override string Describe()
@@ -23,7 +22,7 @@
 
         public override double GetPrice(int passengers, int children)
         {
-            return 2.1 * Price * (passengers + children * 0.75);
+            return 2.1 * Price * (passengers + children * 0.65);
         }
     }
 }

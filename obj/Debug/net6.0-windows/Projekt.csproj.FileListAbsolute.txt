@@ -74,3 +74,5 @@ C:\Users\jakub\Desktop\Wszechswiat\WPF\Projekt\obj\Debug\net6.0-windows\Pages\Pa
 C:\Users\jakub\Desktop\Wszechswiat\WPF\Projekt\obj\Debug\net6.0-windows\Pages\PaymentPage.baml
 C:\Users\jakub\Desktop\Wszechswiat\WPF\Projekt\obj\Debug\net6.0-windows\Pages\ThanksPage.g.cs
 C:\Users\jakub\Desktop\Wszechswiat\WPF\Projekt\obj\Debug\net6.0-windows\Pages\ThanksPage.baml
+C:\Users\jakub\Desktop\Wszechswiat\WPF\Projekt\obj\Debug\net6.0-windows\Pages\NoFlightsPage.g.cs
+C:\Users\jakub\Desktop\Wszechswiat\WPF\Projekt\obj\Debug\net6.0-windows\Pages\NoFlightsPage.baml

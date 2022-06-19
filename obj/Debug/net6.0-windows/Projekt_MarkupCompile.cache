@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 C:\Users\jakub\Desktop\Wszechswiat\WPF\Projekt\App.xaml
-161883889163
+1753367317
 
-55-1422310091
+56346678205
 202-1694587708
-MainWindow.xaml;Pages\AccountPage.xaml;Pages\FlightDetailsPage.xaml;Pages\FlightsPage.xaml;Pages\LoginPage.xaml;Pages\MainPage.xaml;Pages\PaymentPage.xaml;Pages\RegistrationPage.xaml;Pages\SeatChoicePage.xaml;Pages\SummaryPage.xaml;Pages\ThanksPage.xaml;Styles\Buttons.xaml;Styles\Colors.xaml;Styles\Fonts.xaml;Styles\Popups.xaml;Styles\Texts.xaml;
+MainWindow.xaml;Pages\AccountPage.xaml;Pages\FlightDetailsPage.xaml;Pages\FlightsPage.xaml;Pages\LoginPage.xaml;Pages\MainPage.xaml;Pages\NoFlightsPage.xaml;Pages\PaymentPage.xaml;Pages\RegistrationPage.xaml;Pages\SeatChoicePage.xaml;Pages\SummaryPage.xaml;Pages\ThanksPage.xaml;Styles\Buttons.xaml;Styles\Colors.xaml;Styles\Fonts.xaml;Styles\Popups.xaml;Styles\Texts.xaml;
 
 False
 

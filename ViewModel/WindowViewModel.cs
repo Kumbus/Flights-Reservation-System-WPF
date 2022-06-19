@@ -62,8 +62,6 @@ namespace Projekt
         public ICommand ChangePageToLoginCommand { get; set; }
         public ApplicationPage CurrentPage { get; set; } = ApplicationPage.Main;
 
-
-
         public void ChangePageToLogin(object value)
         {
             if(logged == false)
@@ -98,7 +96,7 @@ namespace Projekt
             return true;
         }
 
-        #endregion
+       
 
         public void ChangeButtonsTexts()
         {
@@ -113,6 +111,8 @@ namespace Projekt
                 LoginButtonText = "Zaloguj się";
             }
         }
+
+        #endregion
     }
 
 }

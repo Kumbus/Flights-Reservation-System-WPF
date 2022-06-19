@@ -1,11 +1,4 @@
-﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 namespace Projekt
@@ -22,36 +15,28 @@ namespace Projekt
             Flights = controller.AddFlightToAccount(User.Id);
             BackToMainPageCommand = new RelayCommand(BackToMainPage, CanBackToMainPage);
             DeleteAccountCommand = new RelayCommand(DeleteAccount, CanDeleteAccount);
+            CancelReservationCommand = new RelayCommand(CancelReservation, CanCancelReservation);
         }
-        
 
+        #region Usunięcie konta
         public ICommand DeleteAccountCommand { get; set; }
-
-
         private void DeleteAccount(object value)
         {
-                string connectionString = "SERVER=127.0.0.1;DATABASE=loty;UID=root;PASSWORD=pR0tuberancj@915";
-                MySqlConnection connection = new MySqlConnection(connectionString);
-                MySqlCommand cmd = new MySqlCommand("Delete from users where Email = '" + User.Email + "'", connection);
+            DataBaseController dataBaseController = new DataBaseController();
+            dataBaseController.DeleteAccount(User.Email);
 
-                connection.Open();
-                cmd.ExecuteNonQuery();
-                connection.Close();
-
-                WindowViewModel mainWindow = WindowViewModel.GetInstanceWindowViewModel();
-                mainWindow.CurrentPage = ApplicationPage.Main;
-            
+            WindowViewModel mainWindow = WindowViewModel.GetInstanceWindowViewModel();
+            mainWindow.CurrentPage = ApplicationPage.Main;           
         }
-
         private bool CanDeleteAccount(object value)
         {
             return true;
         }
+        #endregion
 
 
-
-    #region Powrót na stronę główną
-    public ICommand BackToMainPageCommand { get; set; }
+        #region Powrót na stronę główną
+        public ICommand BackToMainPageCommand { get; set; }
 
         private void BackToMainPage(object value)
         {
@@ -63,6 +48,33 @@ namespace Projekt
         {
             return true;
         }
+        #endregion
+
+        #region Anulowanie rezerwacji
+        public ICommand CancelReservationCommand { get; set; }
+        private void CancelReservation(object value)
+        {
+            string number = (string)value;
+            DataBaseController dataBaseController = new DataBaseController();
+
+            Flights = dataBaseController.CancelMethods(number, GetFlight(number), User.Id);
+
+
+        }
+        private BasicFlight GetFlight(string id)
+        {
+            foreach(BasicFlight bf in Flights)
+            {
+                if(bf.FlightNumber == id)
+                    return bf;
+            }
+            return null;
+        }
+        private bool CanCancelReservation(object value)
+        {
+            return true;
+        }
+
         #endregion
     }
 }

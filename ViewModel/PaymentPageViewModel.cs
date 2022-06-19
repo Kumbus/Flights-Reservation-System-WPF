@@ -43,6 +43,7 @@ namespace Projekt
             });
 
             EndTransactionCommand = new RelayCommand(EndTransaction, CanEndTransaction);
+            GoBackCommand = new RelayCommand(GoBack, CanGoBack);
         }
 
         #region Data urodzenia
@@ -60,9 +61,6 @@ namespace Projekt
             }
         }
         #endregion
-
-
-
 
         #region Sprawdzanie poprawności danych przy zakupie
         private bool CheckData()
@@ -110,12 +108,10 @@ namespace Projekt
                 else
                     controller.LoadUnloggedUserFlight(MyFlight, Name, Surname, Email, PhoneNumber, CalendarDateString, ChosenSeats);
 
-            }
+                WindowViewModel mainWindow = WindowViewModel.GetInstanceWindowViewModel();
+                mainWindow.CurrentPage = ApplicationPage.Thanks;
 
-            WindowViewModel mainWindow = WindowViewModel.GetInstanceWindowViewModel();
-            mainWindow.CurrentPage = ApplicationPage.Thanks;
-            //MailSender mailSender = new MailSender();
-            //mailSender.Send(Email);
+            }
 
         }
 
@@ -124,6 +120,25 @@ namespace Projekt
             return true;
         }
 
+
+
+        #endregion
+
+        #region Powrót do podsumowanie
+        public ICommand GoBackCommand { get; set; }
+
+        private void GoBack(object value)
+        {
+            WindowViewModel mainWindow = WindowViewModel.GetInstanceWindowViewModel();
+            mainWindow.CurrentPage = ApplicationPage.Summary;
+            Messenger.Default.Send(WindowViewModel.Flight);
+            Messenger.Default.Send(ChosenSeats);
+        }
+
+        private bool CanGoBack(object value)
+        {
+            return true;
+        }
         #endregion
     }
 }

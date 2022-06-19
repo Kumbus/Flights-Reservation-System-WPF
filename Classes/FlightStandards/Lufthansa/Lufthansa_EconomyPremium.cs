@@ -2,11 +2,10 @@
 {
     public class Lufthansa_EconomyPremium : Lufthansa
     {
-        public new string NameAndPrice { get; set; }
-        public new string Name { get; set; } = "Klasa Ekonomiczna Premium";
         public Lufthansa_EconomyPremium(BasicFlight bf) : base(bf)
         {
-            NameAndPrice = "Klasa Ekonomiczna Premium " + GetPrice(passengersNumber, childrenNumber) + " zł";
+            Name = "Klasa Ekonomiczna Premium";
+            NameAndPrice = "Ekonomiczna Premium " + GetPrice(passengersNumber, childrenNumber) + " zł";
         }
 
         public override string Describe()

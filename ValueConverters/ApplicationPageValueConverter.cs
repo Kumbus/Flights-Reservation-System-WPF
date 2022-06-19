@@ -4,14 +4,11 @@ using System.Globalization;
 
 namespace Projekt
 {
-    /// <summary>
-    /// Converts the <see cref="ApplicationPage"/> to an actual view/page
-    /// </summary>
+
     public class ApplicationPageValueConverter : BaseValueConverter<ApplicationPageValueConverter>
     {
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            // Find the appropriate page
             switch ((ApplicationPage)value)
             {
                 case ApplicationPage.Main:
@@ -43,6 +40,9 @@ namespace Projekt
 
                 case ApplicationPage.Thanks:
                     return new ThanksPage();
+
+                case ApplicationPage.NoFlights:
+                    return new NoFlightsPage();
 
                 default:
                     Debugger.Break();

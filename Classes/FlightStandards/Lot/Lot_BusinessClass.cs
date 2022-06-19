@@ -2,11 +2,9 @@
 {
     public class Lot_BusinessClass : Lot
     {
-
-        public new string NameAndPrice { get; set; }
-        public new string Name { get; set; } = "Business Class";
         public Lot_BusinessClass(BasicFlight bf) : base(bf)
         {
+            Name = "Business Class";
             NameAndPrice = "Business Class " + GetPrice(passengersNumber, childrenNumber) + " zł";
         }
 
@@ -38,7 +36,7 @@
 
         public override double GetPrice(int passengers, int children)
         {
-            return 4.8 * Price * (passengers + children * 0.75);
+            return 4.8 * Price * (passengers + children * 0.90);
         }
     }
 }

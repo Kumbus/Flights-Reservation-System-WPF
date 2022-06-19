@@ -2,10 +2,9 @@
 {
     public class Emirates_First : Emirates
     {
-        public new string NameAndPrice { get; set; }
-        public new string Name { get; set; } = "Pierwsza klasa";
         public Emirates_First(BasicFlight bf) : base(bf)
         {
+            Name = "Pierwsza klasa";
             NameAndPrice = "Pierwsza klasa " + GetPrice(passengersNumber, childrenNumber) + " zł";
         }
 
@@ -18,7 +17,7 @@
         }
         public override double GetPrice(int passengers, int children)
         {
-            return 11.1 * Price * (passengers + children * 0.75);
+            return 11.1 * Price * (passengers + children * 0.65);
         }
     }
 }

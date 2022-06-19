@@ -2,14 +2,15 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace Projekt
 {
+
     public class DataBaseController
     {
+        private Mutex mutex = new Mutex();
 
         private readonly string connectionString = "SERVER=127.0.0.1;DATABASE=loty;UID=root;PASSWORD=pR0tuberancj@915";
         public string GetSeats(BasicFlight flight)
@@ -71,7 +72,7 @@ namespace Projekt
         {
             string seats = MakeSeatsString(chosenSeats);
             MySqlConnection connection = new MySqlConnection(connectionString);
-            MySqlCommand cmd = new MySqlCommand("INSERT INTO logged_users_flights (Flight_ID, User_ID, Passengers, Children, Seats) " +
+            MySqlCommand cmd = new MySqlCommand("INSERT INTO logged_users_flights (Flight_ID, User_ID, Passengers, Children, ChosenSeats) " +
                 "VALUES ('" + flight.FlightNumber + "', '" + user.Id + "', '" + flight.passengersNumber + "', '" + flight.childrenNumber + "', '" + seats + "')", connection);
             connection.Open();
             cmd.ExecuteNonQuery();
@@ -82,7 +83,7 @@ namespace Projekt
         {
             string seats = MakeSeatsString(chosenSeats);
             MySqlConnection connection = new MySqlConnection(connectionString);
-            MySqlCommand cmd = new MySqlCommand("INSERT INTO anonymous_users_flights (Flights_ID, Passengers, Children, Seats, Name, Surname, Email, Birthday, Phone) " +
+            MySqlCommand cmd = new MySqlCommand("INSERT INTO anonymous_users_flights (Flights_ID, Passengers, Children, ChosenSeats, Name, Surname, Email, Birthday, Phone) " +
                 "VALUES ('" + flight.FlightNumber + "', '" + flight.passengersNumber + "', '" + flight.childrenNumber + "', '" + seats + "', '" + name + "', '" + surname + "', '"
                 + email + "', '" + date + "', '" + phoneNumber + "')", connection);
             connection.Open();
@@ -122,6 +123,10 @@ namespace Projekt
                 flight.DestinationTime = rdr["DestinationTime"].ToString().Substring(0, 5);
                 flight.FlyTime = rdr["FlyTime"].ToString().Substring(0, 5);
                 flight.Price = Int32.Parse(rdr["Price"].ToString());
+                flight.childrenNumber = Int32.Parse(rdr["Children"].ToString());
+                flight.passengersNumber = Int32.Parse(rdr["Passengers"].ToString());
+                flight.BookedSeatsString = rdr["ChosenSeats"].ToString();
+                flight.seatsString = rdr["SeatsLayout"].ToString();
 
                 Flights.Add(flight);
             }
@@ -129,6 +134,90 @@ namespace Projekt
 
             return Flights;
             
+        }
+
+        public ObservableCollection<BasicFlight> CancelMethods(string flightNumber, BasicFlight flight, int id)
+        {
+            ObservableCollection<BasicFlight> flights = new ObservableCollection<BasicFlight>();
+            Thread t1 = new Thread(() => DeleteFromFlights(flightNumber));
+            t1.Start();
+            Thread t2 = new Thread(() => UptdateAfterCancellation(flight));
+            t2.Start();
+            Thread t3 = new Thread(() => flights = AddFlightToAccount(id));
+            t1.Join();
+            t2.Join();
+
+            t3.Start();
+            return flights;
+        }
+        public void DeleteFromFlights(string flightNumber)
+        {
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            MySqlCommand cmd = new MySqlCommand("DELETE FROM logged_users_flights WHERE Flight_Id = '" + flightNumber + "' AND User_ID = " + AccountPageViewModel.User.Id
+                , connection);
+            mutex.WaitOne();
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+            mutex.ReleaseMutex();
+        }
+
+        public void UptdateAfterCancellation(BasicFlight flight)
+        {
+            string newLayout = ChangeSeatsLayoutAfterCancellation(flight);
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            MySqlCommand cmd = new MySqlCommand("UPDATE flights SET Seats = " + (flight.Seats + flight.passengersNumber + flight.childrenNumber) +
+                " , SeatsLayout = '" + newLayout + "' WHERE ID = '" + flight.FlightNumber + "'", connection);
+            mutex.WaitOne();
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+            mutex.ReleaseMutex();
+        }
+
+        private string ChangeSeatsLayoutAfterCancellation(BasicFlight flight)
+        {
+            StringBuilder layout = new StringBuilder(flight.seatsString, flight.seatsString.Length);
+            string seats = flight.BookedSeatsString;
+            int l;
+
+            for (int j = 0; j < seats.Length; j++)
+            {
+                if (seats[j] < 65 || seats[j] > 90)
+                    continue;
+
+                l = 0;
+                char classSign = seats[j];
+                string indexString = "";
+                indexString = indexString + seats[j + 1];
+                if (j < seats.Length - 2 && (seats[j + 2] < 65 || seats[j + 2] > 90)) 
+                    indexString = indexString + seats[j + 2];    
+                int index = Int32.Parse(indexString);
+                for (int i = 0; i < layout.Length; i++)
+                {
+
+                    if (classSign != layout[i])
+                        continue;
+
+                    l++;
+
+                    if (l == index)
+                        layout.Replace("1", "0", i + 1, 1);
+
+                }
+            }
+
+            return layout.ToString();
+        }
+
+        public void DeleteAccount(string email)
+        {
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            MySqlCommand cmd = new MySqlCommand("Delete from users where Email = '" + email + "'", connection);
+
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
         }
     }
 }

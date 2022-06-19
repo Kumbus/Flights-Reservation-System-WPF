@@ -1,7 +1,4 @@
 ﻿using MySql.Data.MySqlClient;
-using System;
-using System.Data;
-using System.Windows;
 
 
 
@@ -80,13 +77,6 @@ namespace Projekt
             connection.Close();
             return true;
         }
-
-        //public void GetData()
-        //{
-        //    MySqlConnection connection = new MySqlConnection(connectionString);
-        //    MySqlCommand cmd = new MySqlCommand("Select * from users where Email = '" + Email + "' and Password = '" + Password + "'", connection);
-        //    connection.Open();
-        //}
 
     }
 }

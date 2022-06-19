@@ -33,7 +33,7 @@
 
                             <TextBox Tag="Email" Style="{StaticResource LoginAndRegister}" Text="{Binding Email}"/>
 
-                            <TextBox Tag="Hasło" Margin="0 0 0 30" Style="{StaticResource LoginAndRegister}" Text="{Binding Password}"/>
+                            <TextBox Tag="Hasło" Margin="0 0 0 30" Style="{StaticResource LoginAndRegister}" Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"/>
 
                             <Label Content="{Binding WrongEmailOrPassword}" Style="{StaticResource WrongText}" />
 

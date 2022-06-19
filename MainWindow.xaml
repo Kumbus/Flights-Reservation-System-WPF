@@ -37,7 +37,6 @@
                                     CornerRadius="10" 
                             />
                             
-                               <!-- Window border and dropshadown -->
                                 <Border 
                                     CornerRadius="10"
                                     Background="{StaticResource ForegroundLightBrush}">
@@ -56,33 +55,25 @@
 
                                     <Grid.RowDefinitions>
 
-                                        <!-- Title Bar -->
                                         <RowDefinition Height="52"/>
-                                        <!--Login Bar-->
                                         <RowDefinition Height="Auto"/>
-                                        <!-- Window Content -->
                                         <RowDefinition Height="*" />
 
                                     </Grid.RowDefinitions>
 
-                                    <!-- Title Bar -->
+
                                     <Grid Grid.Column="0" Panel.ZIndex="1" >
 
                                         <Grid.ColumnDefinitions>
-                                            <!-- Icon -->
                                             <ColumnDefinition Width="Auto" />
-                                            <!-- Title -->
                                             <ColumnDefinition Width="*" />
-                                            <!-- Windows Button -->
                                             <ColumnDefinition Width="Auto" />
 
                                         </Grid.ColumnDefinitions>
 
-                                        <!-- Icon -->
                                         <Image Source="C:\Users\jakub\Desktop\Wszechswiat\WPF\Projekt\Images\IkonaNB.png" Margin="3,3,0,0"/>
 
 
-                                        <!-- Title -->
                                         <Viewbox Grid.Column="0" Grid.ColumnSpan="3" Margin="3">
                                             <TextBlock 
                                                 FontFamily="{StaticResource ResourceKey=LatoBold}">
@@ -90,7 +81,6 @@
                                             </TextBlock>
                                         </Viewbox>
 
-                                        <!-- Window Buttons -->
                                         <StackPanel Grid.Column="2" Orientation="Horizontal">
                                             <Button Click="Minimise" Style="{StaticResource WindowControlButton}" Content="_" />
                                             <Button Click="ChangeSize" Style="{StaticResource WindowControlButton}" Content="[ ]" />

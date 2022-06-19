@@ -3,9 +3,11 @@ using System.Collections.ObjectModel;
 
 namespace Projekt
 {
+    /// <summary>
+    /// Klasa odpowiadająca lini lotniczej Lot
+    /// </summary>
     public class Lot : BasicFlight
     {
-        //public new string Name { get; set; } = "Lot";
         private new const int classAmount = 3;
         public override string seatsString { get; set; }
         public List<ObservableCollection<Seat>> SeatsLayout;
@@ -116,7 +118,7 @@ namespace Projekt
 
         public override double GetPrice(int passengers, int children)
         {
-            return Price * (passengers + children * 0.75);
+            return Price * (passengers + children * 0.90);
         }
     }
 }

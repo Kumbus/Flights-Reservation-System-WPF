@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Input;
 
 namespace Projekt
@@ -38,7 +39,6 @@ namespace Projekt
             set
             {
                 CalendarDateString = value.ToString("yyyy-MM-dd");
-                //CalendarDateString = CalendarDateString.Substring(0, 10);
             }
         }
         #endregion
@@ -131,8 +131,16 @@ namespace Projekt
             BasicFlight flightToSearch = new BasicFlight(SkadText, DokadText, CalendarDateString, ChildrenNumber + PassengersNumber, PassengersNumber, ChildrenNumber);
             FlightUse flightUse = new FlightUse();
             flightUse.Search(flightToSearch);
-            WindowViewModel mainWindow = WindowViewModel.GetInstanceWindowViewModel();
-            mainWindow.CurrentPage = ApplicationPage.Flights;
+            if (FlightUse.Flights.Any())
+            {
+                WindowViewModel mainWindow = WindowViewModel.GetInstanceWindowViewModel();
+                mainWindow.CurrentPage = ApplicationPage.Flights;
+            }
+            else
+            {
+                WindowViewModel mainWindow = WindowViewModel.GetInstanceWindowViewModel();
+                mainWindow.CurrentPage = ApplicationPage.NoFlights;
+            }
         }
 
         private bool CanSearchFlights(object value)

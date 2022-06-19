@@ -3,6 +3,9 @@ using System.Collections.ObjectModel;
 
 namespace Projekt
 {
+    /// <summary>
+    /// Klasa bazowa dla wszystkich lotów
+    /// </summary>
     public class BasicFlight
     {
         public string FlightNumber { get; set; }
@@ -25,6 +28,7 @@ namespace Projekt
         public virtual string Name { get; set; }
         public virtual string NameAndPrice { get; set; }
         public virtual string seatsString { get; set; }
+        public string BookedSeatsString { get; set; }
 
         public BasicFlight() { }
         public BasicFlight(string departurePlace, string destinationPlace, string date, int seats, int passengers, int children)

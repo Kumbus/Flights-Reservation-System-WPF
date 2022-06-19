@@ -14,5 +14,6 @@
         Summary = 7,
         Payment = 8,
         Thanks = 9,
+        NoFlights = 10,
     }
 }

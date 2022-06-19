@@ -15,8 +15,63 @@ namespace Projekt
         public string Name { get; set; } = "";
         public string Surname { get; set; } = "";
         public string Email { get; set; } = "";
-        public string Password { get; set; } = "";
-        public string PasswordCheck { get; set; } = "";
+
+        #region Hasło i sprawdzanie hasła
+        public string Password
+        {
+            get
+            {
+                return password;
+            }
+
+            set
+            {
+                password = "";
+                if(previousLenght<value.Length)
+                    realPassword += value[value.Length - 1];
+                else
+                    realPassword = realPassword.Substring(0, realPassword.Length - 1);
+
+                previousLenght = value.Length;
+                for (int i=0; i < value.Length; i++)
+                {   
+                    password += "•";
+                }
+            }
+        }
+
+        private int previousLenght = 0;
+        private string password = "";
+        private string realPassword = "";
+
+        public string PasswordCheck
+        {
+            get
+            {
+                return passwordCheck;
+            }
+
+            set
+            {
+                passwordCheck = "";
+                if (previousLenghtCheck < value.Length)
+                    realPasswordCheck += value[value.Length - 1];
+                else
+                    realPasswordCheck = realPasswordCheck.Substring(0, realPasswordCheck.Length - 1);
+
+                previousLenghtCheck = value.Length;
+                for (int i = 0; i < value.Length; i++)
+                {
+                    passwordCheck += "•";
+                }
+            }
+        }
+
+        private int previousLenghtCheck = 0;
+        private string passwordCheck = "";
+        private string realPasswordCheck = "";
+
+        #endregion
         public string PhoneNumber { get; set; } = "";
         public string WrongData { get; set; } = "";
 
@@ -44,7 +99,7 @@ namespace Projekt
             //sprawdzanie wartości regexem i odpowiednie komunikaty
             if (CheckData())
             {
-                User user = new User(Name, Surname, Email, Password, CalendarDateString, PhoneNumber);
+                User user = new User(Name, Surname, Email, realPassword, CalendarDateString, PhoneNumber);
 
                 if(user.Check())
                 {
@@ -65,8 +120,6 @@ namespace Projekt
         }
         #endregion
 
-
-
         #region Sprawdzanie poprawności danych przy rejestracji
         private bool CheckData()
         {
@@ -81,7 +134,7 @@ namespace Projekt
             }
             else if(!checkNameAndSurname.IsMatch(Surname))
             {
-                WrongData = Name + " Nazwisko zawiera nieprawidłowe znaki";
+                WrongData = "Nazwisko zawiera nieprawidłowe znaki";
                 return false;
             }
             else if(!checkEmail.IsMatch(Email))
@@ -89,7 +142,7 @@ namespace Projekt
                 WrongData = "Email jest nieprawidłowy";
                 return false;
             }
-            else if(Password != PasswordCheck)
+            else if(realPassword != realPasswordCheck)
             {
                 WrongData = "Hasła nie są identyczne";
                 return false;

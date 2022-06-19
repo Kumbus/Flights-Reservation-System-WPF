@@ -33,6 +33,7 @@
                     <RowDefinition Height="0.1*"/>
                 </Grid.RowDefinitions>
 
+                <Button Content="Powrót" Style="{StaticResource GoBackButton}" VerticalAlignment="Top" Margin="20" Command="{Binding GoBackCommand}" HorizontalAlignment="Left"/>
                 <Label Content="Podsumowanie" Style="{StaticResource BrandText}" Grid.Column="0" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="80"/>
 
                 <StackPanel Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">

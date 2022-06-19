@@ -53,7 +53,7 @@ namespace Projekt {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Projekt;V1.0.0.0;component/pages/thankspage.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Projekt;component/pages/thankspage.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Pages\ThanksPage.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

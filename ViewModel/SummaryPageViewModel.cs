@@ -1,11 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Projekt
@@ -13,7 +8,7 @@ namespace Projekt
     public class SummaryPageViewModel : BaseViewModel
     {
         public BasicFlight MyFlight { get; set; }
-        private double price = 0;
+        private double price = new double();
         public string StringPrice { get; set; } = "";
         public List<Seat> ChosenSeats { get; set; } = new List<Seat>();
         private List<BasicFlight> FlightClasses  = new List<BasicFlight>();
@@ -35,6 +30,9 @@ namespace Projekt
             });
 
             GoToPaymentPageCommand = new RelayCommand(GoToPaymentPage, CanGoToPaymentPage);
+            GoBackCommand = new RelayCommand(GoBack, CanGoBack);
+
+            price = 0;
         }
 
         #region Przypsanie danych
@@ -109,7 +107,7 @@ namespace Projekt
         }
         #endregion
 
-        #region Komenda
+        #region Przejdź do płatności
         public ICommand GoToPaymentPageCommand { get; set; }
 
         private void GoToPaymentPage(object value)
@@ -126,6 +124,25 @@ namespace Projekt
         }
 
         #endregion
+
+        #region Powrót do wyboru foteli
+        public ICommand GoBackCommand { get; set; }
+
+        private void GoBack(object value)
+        {
+            WindowViewModel mainWindow = WindowViewModel.GetInstanceWindowViewModel();
+            mainWindow.CurrentPage = ApplicationPage.SeatChoice;
+
+        }
+
+        private bool CanGoBack(object value)
+        {
+            return true;
+        }
+
+        #endregion
+
+
 
     }
 }

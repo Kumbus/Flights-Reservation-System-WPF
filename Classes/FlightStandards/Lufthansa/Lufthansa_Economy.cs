@@ -2,11 +2,10 @@
 {
     public class Lufthansa_Economy : Lufthansa
     {
-        public new string NameAndPrice { get; set; }
-        public new string Name { get; set; } = "Klasa Ekonomiczna";
         public Lufthansa_Economy(BasicFlight bf) : base(bf)
         {
-            NameAndPrice = "Klasa Ekonomiczna " + GetPrice(passengersNumber, childrenNumber) + " zł";
+            Name = "Klasa ekonomiczna";
+            NameAndPrice = "Ekonomiczna " + GetPrice(passengersNumber, childrenNumber) + " zł";
         }
 
         public override string Describe()

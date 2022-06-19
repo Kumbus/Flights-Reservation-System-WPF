@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Projekt
+﻿namespace Projekt
 {
     public class RyanAir_FlexiPlus : RyanAir
     {
-        public new string NameAndPrice { get; set; }
-        public new string Name { get; set; } = "FlexiPlus";
         public RyanAir_FlexiPlus(BasicFlight bf) : base(bf)
         {
+            Name = "FlexiPlus";
             NameAndPrice = "FlexiPlus" + GetPrice(passengersNumber, childrenNumber) + " zł";
         }
 
@@ -25,7 +18,7 @@ namespace Projekt
 
         public override double GetPrice(int passengers, int children)
         {
-            return 2.5 * Price * (passengers + children * 0.75);
+            return 2.5 * Price * (passengers + children * 0.85);
         }
 
     }

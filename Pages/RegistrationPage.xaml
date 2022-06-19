@@ -54,9 +54,9 @@
 
                             <TextBox Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Tag="Email"  Style="{StaticResource LoginAndRegister}" Text="{Binding Email}"/>
 
-                            <TextBox Grid.Column="0" Grid.Row="3" Tag="Hasło"  Style="{StaticResource LoginAndRegister}" Text="{Binding Password}"/>
+                            <TextBox Grid.Column="0" Grid.Row="3" Tag="Hasło"  Style="{StaticResource LoginAndRegister}" Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"/>
 
-                            <TextBox Grid.Column="1" Grid.Row="3" Tag="Powtórz hasło"  Style="{StaticResource LoginAndRegister}" Text="{Binding PasswordCheck}"/>
+                            <TextBox Grid.Column="1" Grid.Row="3" Tag="Powtórz hasło"  Style="{StaticResource LoginAndRegister}" Text="{Binding PasswordCheck, UpdateSourceTrigger=PropertyChanged}"/>
 
                             <Button Grid.Column="0" Grid.Row="4" x:Name="DateButton" Style="{StaticResource PopupButton}" Content="{Binding CalendarDateString, StringFormat={}{0:dd/MM/yyyy}}" Margin="10,15,5,15">
                                 <Button.Triggers>

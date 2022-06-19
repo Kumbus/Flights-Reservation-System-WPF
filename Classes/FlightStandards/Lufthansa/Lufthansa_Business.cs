@@ -2,11 +2,10 @@
 {
     public class Lufthansa_Business : Lufthansa
     {
-        public new string NameAndPrice { get; set; }
-        public new string Name { get; set; } = "Klasa Biznes";
         public Lufthansa_Business(BasicFlight bf) : base(bf)
         {
-            NameAndPrice = "Klasa Biznes " + GetPrice(passengersNumber, childrenNumber) + " zł";
+            Name = "Klasa Biznes";
+            NameAndPrice = "Biznes " + GetPrice(passengersNumber, childrenNumber) + " zł";
         }
 
         public override string Describe()

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using System.Threading;
 
 namespace Projekt
 {
@@ -18,7 +13,7 @@ namespace Projekt
 
         private void GoToMain()
         {
-            Thread.Sleep(4000);
+            Thread.Sleep(3000);
             WindowViewModel mainWindow = WindowViewModel.GetInstanceWindowViewModel();
             mainWindow.CurrentPage = ApplicationPage.Main;
         }

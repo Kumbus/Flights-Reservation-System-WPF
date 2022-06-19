@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Projekt
+﻿namespace Projekt
 {
     public class RyanAir_Value : RyanAir
     {
-        public new string NameAndPrice { get; set; }
-        public new string Name { get; set; } = "Value";
         public RyanAir_Value(BasicFlight bf) : base(bf)
         {
+            Name = "Value";
             NameAndPrice = "Value " + GetPrice(passengersNumber, childrenNumber) + " zł";
         }
 
@@ -24,7 +17,7 @@ namespace Projekt
 
         public override double GetPrice(int passengers, int children)
         {
-            return Price * (passengers + children * 0.75);
+            return Price * (passengers + children * 0.85);
         }
     }
 }

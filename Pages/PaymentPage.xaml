@@ -14,7 +14,9 @@
 
     <Border Background="{StaticResource WordOrangeBrush}" CornerRadius="10" Margin="10">
         <Grid>
+            
             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                
                 <StackPanel HorizontalAlignment="Center" TextBlock.TextAlignment="Center" Margin="40">
 
                     <Border Background="{StaticResource ForegroundLightBrush}" 
@@ -42,6 +44,7 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
+                            
 
                             <TextBlock Grid.ColumnSpan="2" Text="Podaj dane do zakupu" 
                                    FontSize="{StaticResource FontSizeLarge}" 
@@ -93,6 +96,8 @@
 
                 </StackPanel>
             </ScrollViewer>
+
+            <Button Content="Powrót" Style="{StaticResource GoBackButton}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20" Command="{Binding GoBackCommand}"/>
         </Grid>
     </Border>
 </Page>

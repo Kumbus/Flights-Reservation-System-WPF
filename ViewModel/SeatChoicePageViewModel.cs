@@ -2,10 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Projekt
@@ -17,6 +14,8 @@ namespace Projekt
         public string ButtonText { get; set; }
 
         private int NumberOfClicked = 0;
+
+        public List<string> ClassNames { get; set; } = new List<string>();
 
 
 
@@ -52,10 +51,13 @@ namespace Projekt
             businessSeatsThread.Join();
             
             CreateDictionary();
+            CheckNumber();
+            SetNames();
 
             ButtonText = "Pozostałe siedzenia do wybrania: " + (Flight.passengersNumber + Flight.childrenNumber - NumberOfClicked);
             CheckClickedSeatsCommand = new RelayCommand(CheckClickedSeats, CanCheckClickedSeats);
             GoToSummaryCommand = new RelayCommand(GoToSummary, CanGoToSummary);
+            GoBackCommand = new RelayCommand(GoBack, CanGoBack);
         }
 
         #region SeatsCommand
@@ -145,6 +147,19 @@ namespace Projekt
 
         }
 
+        private void CheckNumber()
+        {
+            foreach(KeyValuePair<string, Seat> s in seatsDictionary)
+            {
+                if (s.Value.Clicked == true)
+                {
+                    clickedSeats.Add(s.Value);
+                    NumberOfClicked++;
+                }
+            }
+        }
+
+        #region Przejście do podsumowania
         public ICommand GoToSummaryCommand { get; set; }
 
         private void GoToSummary(object value)
@@ -170,6 +185,30 @@ namespace Projekt
             }
         }
 
+        #endregion
+
+        #region Powrót do lotów
+        public ICommand GoBackCommand { get; set; }
+
+        private void GoBack(object value)
+        {
+            WindowViewModel mainWindow = WindowViewModel.GetInstanceWindowViewModel();
+            mainWindow.CurrentPage = ApplicationPage.Flights;
+
+        }
+
+        private bool CanGoBack(object value)
+        {
+            return true;
+        }
+        #endregion
+
+        private void SetNames()
+        {
+            List<BasicFlight> classes = Flight.GenerateDerived();
+            foreach(BasicFlight flight in classes)
+                ClassNames.Add(flight.Name);
+        }
 
     }
 }

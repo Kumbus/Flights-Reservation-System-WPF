@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 namespace Projekt
@@ -15,8 +10,10 @@ namespace Projekt
         {
             Flights = FlightUse.Flights;
             GoToDetailsCommand = new RelayCommand(GoToDetails, CanGoToDetails);
+            GoBackCommand = new RelayCommand(GoBack, CanGoBack);
         }
 
+        #region Przejście do szczegółów lotu
         public ICommand GoToDetailsCommand { get; set; }
 
         private void GoToDetails(object value)
@@ -32,8 +29,24 @@ namespace Projekt
             return true;
         }
 
+        #endregion
 
+        #region Powrót do strony głównej
+        public ICommand GoBackCommand { get; set; }
 
-        
+        private void GoBack(object value)
+        {
+            WindowViewModel mainWindow = WindowViewModel.GetInstanceWindowViewModel();
+            mainWindow.CurrentPage = ApplicationPage.Main;
+
+        }
+
+        private bool CanGoBack(object value)
+        {
+            return true;
+        }
+
+        #endregion
+
     }
 }

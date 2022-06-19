@@ -2,10 +2,9 @@
 {
     public class Lufthansa_First : Lufthansa
     {
-        public new string NameAndPrice { get; set; }
-        public new string Name { get; set; } = "Klasa Pierwsza";
         public Lufthansa_First(BasicFlight bf) : base(bf)
         {
+            Name = "Klasa Pierwsza";
             NameAndPrice = "Klasa Pierwsza " + GetPrice(passengersNumber, childrenNumber) + " zł";
         }
 

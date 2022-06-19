@@ -2,11 +2,9 @@
 { 
     public class Lot_EconomyClassPremium : Lot
     {
-
-        public new string NameAndPrice { get; set; }
-        public new string Name { get; set; } = "Economy Class Premium";
         public Lot_EconomyClassPremium(BasicFlight bf) : base(bf)
-    {
+        {
+            Name = "Economy Class Premium";
             NameAndPrice = "Economy Class Premium " + GetPrice(passengersNumber, childrenNumber) + " zł";
         }
 
@@ -35,7 +33,7 @@
 
         public override double GetPrice(int passengers, int children)
         {
-            return 1.8 * Price * (passengers + children * 0.75);
+            return 1.8 * Price * (passengers + children * 0.90);
         }
     }
 }
