@@ -4,7 +4,9 @@ using System.Globalization;
 
 namespace Projekt
 {
-
+    /// <summary>
+    /// Konwerter nazwy strony na stronę ułatwiający nawigację w aplikacji
+    /// </summary>
     public class ApplicationPageValueConverter : BaseValueConverter<ApplicationPageValueConverter>
     {
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)

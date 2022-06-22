@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace Projekt
@@ -8,9 +9,21 @@ namespace Projekt
     /// </summary>
     public class Lot : BasicFlight
     {
+        /// <summary>
+        ///  Stała określająca ilość klas pochodnych
+        /// </summary>
         private new const int classAmount = 3;
+        /// <summary>
+        ///  Właściwość odpowiadająca konfiguracji siedzeń w samolocie
+        /// </summary>
         public override string seatsString { get; set; }
+        /// <summary>
+        ///  Lista obserwowalnych kolekcji, gdzie każda jest konfiguracją siedzeń dla innej klasy podóży
+        /// </summary>
         public List<ObservableCollection<Seat>> SeatsLayout;
+        /// <summary>
+        ///  Konstruktor kopiujący po klasie bazowej
+        /// </summary>
         public Lot(BasicFlight bf) : base(bf)
         {
             Name = "Lot";
@@ -19,8 +32,9 @@ namespace Projekt
             SeatsLayout = new List<ObservableCollection<Seat>>();
             CreateSeatsCollection();
         }
-
-
+        /// <summary>
+        ///  Pole odpowiadające cenie dodające krótki opis w geterze
+        /// </summary>
         public string PriceString 
         {
             get
@@ -32,17 +46,26 @@ namespace Projekt
             {
             }
         }
-
+        /// <summary>
+        ///  Metoda opisująca lot używana przez klasy pochodne
+        ///  <returns>Opis klasy podróży</returns>
+        /// </summary>
         override public string Describe()
         {
             return "Cudowny lot z Lotem";
         }
-
+        /// <summary>
+        ///  Metoda zwracająca ilość klas pochodnych
+        ///  <returns>Liczba klas pochodnych</returns>
+        /// </summary>
         public override int HowManyClasses()
         {
             return classAmount;
         }
-
+        /// <summary>
+        ///  Metoda wirtualna zwracająca klasy pochodne dla klas pochodnych
+        ///  <returns>Lista zawierająca obiekty klas pochodnych</returns>
+        /// </summary>
         public override List<BasicFlight> GenerateDerived()
         {
             List<BasicFlight> derived = new List<BasicFlight>();
@@ -54,7 +77,9 @@ namespace Projekt
 
             return derived;
         }
-
+        /// <summary>
+        ///  Metoda tworząca kolekcje siedzeń na podstawie danych pobranych z bazy
+        /// </summary>
         public void CreateSeatsCollection()
         {
             ObservableCollection<Seat> economySeats = new ObservableCollection<Seat>();
@@ -110,15 +135,23 @@ namespace Projekt
             SeatsLayout.Add(premiumSeats);
             SeatsLayout.Add(businessSeats);
         }
-
+        /// <summary>
+        ///  Metoda zwracająca konfigurację siedzeń 
+        ///  <returns>Lista obserwowalnych kolekcji gdzie każda jest ułożenie mfoteli w danej klasie podróży</returns>
+        /// </summary>
         public override List<ObservableCollection<Seat>> GetSeats()
         {
             return SeatsLayout;
         }
-
+        /// <summary>
+        ///  Metoda obliczająca cenę dla najtańszej klasy podróży lotu
+        ///  <param name="passengers">Liczba dorosłych pasażerów</param>
+        ///  <param name="children">Liczba dzieci</param>
+        ///  <returns>Najtańsza cena lotu</returns>
+        /// </summary>
         public override double GetPrice(int passengers, int children)
         {
-            return Price * (passengers + children * 0.90);
+            return Math.Round(Price * (passengers + children * 0.90), 2);
         }
     }
 }

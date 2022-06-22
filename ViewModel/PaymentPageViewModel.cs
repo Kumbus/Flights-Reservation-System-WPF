@@ -6,20 +6,44 @@ using System.Windows.Input;
 
 namespace Projekt
 {
+    /// <summary>
+    /// Klasa odpowidająca za zachowanie strony płatności
+    /// </summary>
     public class PaymentPageViewModel : BaseViewModel
     {
+        /// <summary>
+        /// Lot, którego dotyczy rezerwacja
+        /// </summary>
         private BasicFlight MyFlight;
-
+        /// <summary>
+        /// Lista miejsc wybranych podczas rezerwacji
+        /// </summary>
         private List<Seat> ChosenSeats = new List<Seat>();
 
-
+        /// <summary>
+        /// Imię użytkownika
+        /// </summary>
         public string Name { get; set; } = "";
+        /// <summary>
+        /// Nazwisko użytkownika
+        /// </summary>
         public string Surname { get; set; } = "";
+        /// <summary>
+        /// Email użytkownika
+        /// </summary>
         public string Email { get; set; } = "";
+        /// <summary>
+        /// Numer telefonu użytkownika
+        /// </summary>
         public string PhoneNumber { get; set; } = "";
+        /// <summary>
+        /// Właściwość przechowująca tekst, który jest wyświetlony kiedy wprowadzone dane są nieprawidłowe
+        /// </summary>
         public string WrongData { get; set; } = "";
 
-
+        /// <summary>
+        /// Konstruktor
+        /// </summary>
         public PaymentPageViewModel()
         {
             if (WindowViewModel.logged == true)
@@ -47,22 +71,32 @@ namespace Projekt
         }
 
         #region Data urodzenia
+        /// <summary>
+        /// Data urodzenia potrzebna do getera publicznej właściwości
+        /// </summary>
         private DateTime calendarDate { get; set; } = DateTime.Now;
-
+        /// <summary>
+        /// Data urodzenia w postaci tekstowej, która jest wyświetlana na stronie
+        /// </summary>
         public string CalendarDateString { get; set; } = DateTime.Now.ToString("yyyy-MM-dd");
-
+        /// <summary>
+        /// Właściwość przypsująca tekstowi datę wybraną przez użytkownika w kalendarzu
+        /// </summary>
         public DateTime CalendarDate
         {
             get { return calendarDate; }
             set
             {
                 CalendarDateString = value.ToString("yyyy-MM-dd");
-                //CalendarDateString = CalendarDateString.Substring(0, 10);
             }
         }
         #endregion
 
         #region Sprawdzanie poprawności danych przy zakupie
+        /// <summary>
+        /// Metoda sprawdzająca czy wpisane dane są poprawne
+        /// </summary>
+        /// <returns>True jeśli dane są poprawne, false jeśli dan enie są poprawne</returns>
         private bool CheckData()
         {
             Regex checkNameAndSurname = new Regex(@"^[\p{L}\p{M}][\p{L}\p{M}\-.' ]*[\p{L}\p{M}]$");
@@ -95,8 +129,14 @@ namespace Projekt
         #endregion
 
         #region Zakończenie zakupu
+        /// <summary>
+        /// Komenda odpowiadająca przyciskowi kończącemu transakcję 
+        /// </summary>
         public ICommand EndTransactionCommand { get; set; }
-
+        /// <summary>
+        /// Metoda do komendy, która kończy transakcję i wywołuje metody zapisujące wszystko do bazy danych
+        /// </summary>
+        /// <param name="value">Parametr komendy - nulll</param>
         private void EndTransaction(object value)
         {
             if (CheckData())
@@ -114,7 +154,11 @@ namespace Projekt
             }
 
         }
-
+        /// <summary>
+        /// Metoda sprawdzająca czy można wyknać komendę, która końćzy transakcję
+        /// </summary>
+        /// <param name="value">Parametr komendy - null</param>
+        /// <returns>True</returns>
         private bool CanEndTransaction(object value)
         {
             return true;
@@ -125,8 +169,14 @@ namespace Projekt
         #endregion
 
         #region Powrót do podsumowanie
+        /// <summary>
+        /// Komenda zmieniająca stronę na stronę podsumowania
+        /// </summary>
         public ICommand GoBackCommand { get; set; }
-
+        /// <summary>
+        /// Metoda wykonywana przez komendę do zmiany strony na stronę podsumowania
+        /// </summary>
+        /// <param name="value">Parametr komendy - null</param>
         private void GoBack(object value)
         {
             WindowViewModel mainWindow = WindowViewModel.GetInstanceWindowViewModel();
@@ -134,7 +184,11 @@ namespace Projekt
             Messenger.Default.Send(WindowViewModel.Flight);
             Messenger.Default.Send(ChosenSeats);
         }
-
+        /// <summary>
+        /// Metoda sprawdzająca czy komenda zmiany strony na stronę podsumowania może zostać wykonana
+        /// </summary>
+        /// <param name="value">>Parametr komendy - null</param>
+        /// <returns>True</returns>
         private bool CanGoBack(object value)
         {
             return true;

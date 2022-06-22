@@ -1,13 +1,24 @@
-﻿namespace Projekt
+﻿using System;
+
+namespace Projekt
 {
+    /// <summary>
+    /// Klasa reprezentująca klasę biznesową w lini lotniczej Lufthansa
+    /// </summary>
     public class Lufthansa_Business : Lufthansa
     {
+        /// <summary>
+        /// Konstruktor kopiujący po klasie bazowej
+        /// </summary>
         public Lufthansa_Business(BasicFlight bf) : base(bf)
         {
             Name = "Klasa Biznes";
             NameAndPrice = "Biznes " + GetPrice(passengersNumber, childrenNumber) + " zł";
         }
-
+        /// <summary>
+        /// Metoda opisująca klasę podróży 
+        /// </summary>
+        /// <returns>Opis klasy podróży</returns>
         public override string Describe()
         {
             return "Klasa Biznes\nWygodniejsza podróż - rozkoszuj się komfortem i prywatnością w Klasie Biznes Lufthansy, a na miejsce dotrzesz wypoczęty i zrelaksowany. " +
@@ -23,10 +34,15 @@
                 "wybierasz to, na co masz ochotę.\n\nLufthansa Welcome Lounge\nW saloniku Lufthansa Welcome Lounge, można znaleźć bistro, jak również luksusowe kabiny " +
                 "prysznicowe, aby odświeżyć się po długiej podróży.";
         }
-
+        /// <summary>
+        ///  Metoda obliczająca cenę dla tej klasy podróży
+        ///  <param name="passengers">Liczba dorosłych pasażerów</param>
+        ///  <param name="children">Liczba dzieci</param>
+        ///  <returns>Cena lotu</returns>
+        /// </summary
         public override double GetPrice(int passengers, int children)
         {
-            return 2.5 * Price * (passengers + children * 0.75);
+            return Math.Round(2.5 * Price * (passengers + children * 0.75), 2);
         }
     }
 }

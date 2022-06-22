@@ -1,13 +1,24 @@
-﻿namespace Projekt
+﻿using System;
+
+namespace Projekt
 {
+    /// <summary>
+    /// Klasa reprezentująca klasę ekonomiczną premium w lini lotniczej Lufthansa
+    /// </summary>
     public class Lufthansa_EconomyPremium : Lufthansa
     {
+        /// <summary>
+        /// Konstruktor kopiujący po klasie bazowej
+        /// </summary>
         public Lufthansa_EconomyPremium(BasicFlight bf) : base(bf)
         {
             Name = "Klasa Ekonomiczna Premium";
             NameAndPrice = "Ekonomiczna Premium " + GetPrice(passengersNumber, childrenNumber) + " zł";
         }
-
+        /// <summary>
+        /// Metoda opisująca klasę podróży 
+        /// </summary>
+        /// <returns>Opis klasy podróży</returns>
         public override string Describe()
         {
             return "Klasa Ekonomiczna Premium\nWięcej miejsca dla siebie, większy limit bezpłatnego bagażu, bogatszy serwis – podczas rejsów Klasa Ekonomiczna Premium " +
@@ -22,10 +33,15 @@
                 "otrzymać przy stanowisku obsługi Lufthansy, a we Frankfurcie i Monachium bezpośrednio przy wejściu do saloniku.\n\nBezpłatny bagaż\nW ramach bezpłatnego " +
                 "limitu możesz nadać dwie sztuki bagażu ważące do 23 kg każda  – dwukrotnie więcej, niż podróżując Klasą Ekonomiczną.";
         }
-
+        /// <summary>
+        ///  Metoda obliczająca cenę dla tej klasy podróży
+        ///  <param name="passengers">Liczba dorosłych pasażerów</param>
+        ///  <param name="children">Liczba dzieci</param>
+        ///  <returns>Cena lotu</returns>
+        /// </summary
         public override double GetPrice(int passengers, int children)
         {
-            return 1.5 * Price * (passengers + children * 0.75);
+            return Math.Round(1.5 * Price * (passengers + children * 0.75), 2);
         }
     }
 }

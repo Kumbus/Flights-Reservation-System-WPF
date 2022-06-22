@@ -7,12 +7,24 @@ using System.Threading;
 
 namespace Projekt
 {
-
+    /// <summary>
+    /// Klasa odpowiadająca za połączenie z bazą danych i wykonywanie na niej operacji
+    /// </summary>
     public class DataBaseController
     {
+        /// <summary>
+        /// Mutex używany do blokowania dostępu do bazy danych przez dwa różne wątki
+        /// </summary>
         private Mutex mutex = new Mutex();
-
+        /// <summary>
+        /// Dane pozwalające połączyć się z bazą danych
+        /// </summary>
         private readonly string connectionString = "SERVER=127.0.0.1;DATABASE=loty;UID=root;PASSWORD=pR0tuberancj@915";
+        /// <summary>
+        /// Pobiera z bazy danych string odpowidający siedzeniom
+        /// </summary>
+        /// <param name="flight">Lot, z którego pobierane są siedzenia</param>
+        /// <returns>String odpowidający ustawieniu siedzeń</returns>
         public string GetSeats(BasicFlight flight)
         {
             string seatsString = "";
@@ -28,7 +40,11 @@ namespace Projekt
             connection.Close();
             return seatsString;
         }
-
+        /// <summary>
+        /// Aktualizuje informacje o locie w bazie danych po dokonaniu rezerwacji
+        /// </summary>
+        /// <param name="flight">Lot, w którym zostały zarezerwowane miejsca</param>
+        /// <param name="chosenSeats">Miejsca wybrane podczas rezerwacji</param>
         public void UpdateAfterPurchase(BasicFlight flight, List<Seat> chosenSeats)
         {
             string newLayout = ChangeSeatsLayout(flight, chosenSeats);
@@ -39,7 +55,12 @@ namespace Projekt
             cmd.ExecuteNonQuery();
             connection.Close();
         }
-
+        /// <summary>
+        /// Zmienia konfigurację krzeseł po zakupie
+        /// </summary>
+        /// <param name="flight">Lot, w którym jest zmieniana konfiguracja</param>
+        /// <param name="chosenSeats">Fotele wybrane podczas rezerwacji</param>
+        /// <returns>Zaktualizowana konfiguracja foteli</returns>
         private string ChangeSeatsLayout(BasicFlight flight, List<Seat> chosenSeats)
         {
             StringBuilder layout = new StringBuilder(flight.seatsString, flight.seatsString.Length);
@@ -67,7 +88,12 @@ namespace Projekt
             return layout.ToString();
 
         }
-
+        /// <summary>
+        /// Dodaje lot zarezerwowany przez zalogowanego użytkownika do bazy danych i łączy go z tym kontem
+        /// </summary>
+        /// <param name="flight">Lot, którego doytyczy rezerwacja</param>
+        /// <param name="user">Użytkownik, który dokonał rezerwacji</param>
+        /// <param name="chosenSeats">Miejsca wybrane podczas rezerwacji</param>
         public void LoadLoggedUserFlight(BasicFlight flight, User user, List<Seat> chosenSeats)
         {
             string seats = MakeSeatsString(chosenSeats);
@@ -78,7 +104,16 @@ namespace Projekt
             cmd.ExecuteNonQuery();
             connection.Close();
         }
-
+        /// <summary>
+        /// Dodaje lot zarezerwowany przez niezalogowanego użytkownika do bazy danych i łączy go z danymi podanymi przy rezerwacji 
+        /// </summary>
+        /// <param name="flight">Lot, którego doytyczy rezerwacja</param>
+        /// <param name="name">Imię użytkownika</param>
+        /// <param name="surname">Nazwisko użytownika</param>
+        /// <param name="email">Email użytkownika</param>
+        /// <param name="phoneNumber">Numer telefonu użytkownika</param>
+        /// <param name="date">Data urodzenia użytkownika</param>
+        /// <param name="chosenSeats">Miejsca wybrane podczas rezerwacji</param>
         public void LoadUnloggedUserFlight(BasicFlight flight, string name, string surname, string email, string phoneNumber, string date, List<Seat> chosenSeats)
         {
             string seats = MakeSeatsString(chosenSeats);
@@ -90,7 +125,11 @@ namespace Projekt
             cmd.ExecuteNonQuery();
             connection.Close();
         }
-
+        /// <summary>
+        /// Tworzy string, który przechowuje konfigurację foteli na podstawie lsity z wybranymi siedzeniami
+        /// </summary>
+        /// <param name="chosenSeats">Siedzenia wybrane podczas rezerwacji</param>
+        /// <returns></returns>
         private string MakeSeatsString(List<Seat> chosenSeats)
         {
             string seatsString = "";
@@ -100,7 +139,11 @@ namespace Projekt
 
             return seatsString;
         }
-
+        /// <summary>
+        /// Pobiera loty użytkownika z bazy danych 
+        /// </summary>
+        /// <param name="id">Id użytkownika</param>
+        /// <returns>Kolekcja lotów, które zarezerwował użytkownik</returns>
         public ObservableCollection<BasicFlight> AddFlightToAccount(int id)
         {
             MySqlConnection connection = new MySqlConnection(connectionString);
@@ -135,7 +178,13 @@ namespace Projekt
             return Flights;
             
         }
-
+        /// <summary>
+        /// Metoda rozpoczynająca sekwencję metod, które anulują rezerwację lotu
+        /// </summary>
+        /// <param name="flightNumber">Numer lotu, którego rezerwacja jest anulowana</param>
+        /// <param name="flight">Lot, którego rezerwacja jest anulowana</param>
+        /// <param name="id">ID użytkownika, który anuluje zarezerwowany wcześniej lot</param>
+        /// <returns>Kolekcja lotów użytkownika po anulowaniu lotu</returns>
         public ObservableCollection<BasicFlight> CancelMethods(string flightNumber, BasicFlight flight, int id)
         {
             ObservableCollection<BasicFlight> flights = new ObservableCollection<BasicFlight>();
@@ -150,6 +199,10 @@ namespace Projekt
             t3.Start();
             return flights;
         }
+        /// <summary>
+        /// Usuwa lot z zarezerwowanych lotów w bazie danych
+        /// </summary>
+        /// <param name="flightNumber">Numer lotu, którego rezerwacja jest anulowana</param>
         public void DeleteFromFlights(string flightNumber)
         {
             MySqlConnection connection = new MySqlConnection(connectionString);
@@ -161,7 +214,10 @@ namespace Projekt
             connection.Close();
             mutex.ReleaseMutex();
         }
-
+        /// <summary>
+        /// Aktualizuje informacje o locie w bazie danych po anulowaniu rezerwacji
+        /// </summary>
+        /// <param name="flight">Lot, którego rezerwacja jest anulowana</param>
         public void UptdateAfterCancellation(BasicFlight flight)
         {
             string newLayout = ChangeSeatsLayoutAfterCancellation(flight);
@@ -174,7 +230,11 @@ namespace Projekt
             connection.Close();
             mutex.ReleaseMutex();
         }
-
+        /// <summary>
+        /// Aktualizuje string odpowiadający konfiguracji foteli po anulowaniu rezerwacji
+        /// </summary>
+        /// <param name="flight">Lot, którego rezerwacja jest anulowana</param>
+        /// <returns>Zaktualizowany string odpowiadający konfiguracji foteli</returns>
         private string ChangeSeatsLayoutAfterCancellation(BasicFlight flight)
         {
             StringBuilder layout = new StringBuilder(flight.seatsString, flight.seatsString.Length);
@@ -209,7 +269,10 @@ namespace Projekt
 
             return layout.ToString();
         }
-
+        /// <summary>
+        /// Usuwa konto użytkwnika z bazy danych
+        /// </summary>
+        /// <param name="email">Email użytkownika, którego konto jest usuwane</param>
         public void DeleteAccount(string email)
         {
             MySqlConnection connection = new MySqlConnection(connectionString);

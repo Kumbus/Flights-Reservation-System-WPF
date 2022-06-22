@@ -53,7 +53,7 @@ namespace Projekt {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Projekt;V1.0.0.0;component/pages/seatchoicepage.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Projekt;component/pages/seatchoicepage.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Pages\SeatChoicePage.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

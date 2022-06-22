@@ -4,15 +4,30 @@ using System.Windows.Input;
 
 namespace Projekt
 {
+    /// <summary>
+    /// Klasa odpowiadająca za zachowanie głównej strony, w której zawierają się inne
+    /// </summary>
     public class WindowViewModel : BaseViewModel
     {
-
+        /// <summary>
+        /// Statyczne pole pokazujące czy użytkownik jest zalogowany
+        /// </summary>
         public static bool logged = false;
-
+        /// <summary>
+        /// Statyczna własciwość reprezentująca lot, który jes rezerwowany 
+        /// </summary>
         public static BasicFlight Flight { get; set; }
-
+        /// <summary>
+        /// Tekst przycisku rejestracji/wejścia w profil
+        /// </summary>
         public string RegisterButtonText { get; set; } = "Zarejestruj się";
+        /// <summary>
+        /// Tekst przycisku logowania/wylogowywania się
+        /// </summary>
         public string LoginButtonText { get; set; } = "Zaloguj się";
+        /// <summary>
+        /// Prywatny konstruktor, żeby móc zastosować wzorzec singleton
+        /// </summary>
         private WindowViewModel()
         {
             ChangePageToLoginCommand = new RelayCommand(ChangePageToLogin, CanChangePageToLogin);
@@ -23,8 +38,14 @@ namespace Projekt
 
 
         #region Singleton
+        /// <summary>
+        /// Instancja klasy potrzebna do wzorca singleton
+        /// </summary>
         private static WindowViewModel? instance;
-
+        /// <summary>
+        /// Metoda zwracająca jedyną instancję klasy lub tworząca ją jeśli jeszcze nie istnieje
+        /// </summary>
+        /// <returns>Instancja klasy</returns>
         public static WindowViewModel GetInstanceWindowViewModel()
         {
             if (instance == null)
@@ -37,6 +58,9 @@ namespace Projekt
         #endregion
 
         #region Tworzenie logów
+        /// <summary>
+        /// Metoda tworząca log o wejściu w pliku tekstowym podczas startu aplikacji
+        /// </summary>
         public void CreateEntryLog()
         {
             string path = "C:\\Users\\jakub\\Desktop\\Wszechswiat\\WPF\\Projekt\\Logs.txt";
@@ -46,7 +70,9 @@ namespace Projekt
             sw.Flush();
             sw.Close();
         }
-
+        /// <summary>
+        /// Metoda tworząca log o wyjściu podczas zamykania aplikacji
+        /// </summary>
         public void CreateCloseLog()
         {
             string path = "C:\\Users\\jakub\\Desktop\\Wszechswiat\\WPF\\Projekt\\Logs.txt";
@@ -59,10 +85,19 @@ namespace Projekt
         #endregion
 
         #region Zmiana stron na logowanie i rejestrację lub profil użytkownika w zależności od zalogowania
+        /// <summary>
+        /// Komenda zmieniająca stronę na stronę logowania
+        /// </summary>
         public ICommand ChangePageToLoginCommand { get; set; }
+        /// <summary>
+        /// Właściwość reprezentująca aktualną stronę
+        /// </summary>
         public ApplicationPage CurrentPage { get; set; } = ApplicationPage.Main;
-
-        public void ChangePageToLogin(object value)
+        /// <summary>
+        /// Metoda wykonywana przez komendę do zmiany strony na stronę logowania
+        /// </summary>
+        /// <param name="value">Parametr komendy - null</param>
+        private void ChangePageToLogin(object value)
         {
             if(logged == false)
                 CurrentPage = ApplicationPage.Login;
@@ -73,15 +108,24 @@ namespace Projekt
                 ChangeButtonsTexts();
             }
         }
-
-        public bool CanChangePageToLogin(object value)
+        /// <summary>
+        /// Metoda sprawdzająca czy komenda zmiany strony na stronę logowania może zostać wykonana
+        /// </summary>
+        /// <param name="value">>Parametr komendy - null</param>
+        /// <returns>True</returns>
+        private bool CanChangePageToLogin(object value)
         {
             return true;
         }
-
+        /// <summary>
+        /// Komenda zmieniająca stronę na stronę rejestracji
+        /// </summary>
         public ICommand ChangePageToRegistrationCommand { get; set; }
-
-        public void ChangePageToRegistration(object value)
+        /// <summary>
+        /// Metoda wykonywana przez komendę do zmiany strony na stronę rejestracji
+        /// </summary>
+        /// <param name="value">Parametr komendy - null</param>
+        private void ChangePageToRegistration(object value)
         {
             if(logged == false)
                 CurrentPage = ApplicationPage.Registration;
@@ -90,14 +134,18 @@ namespace Projekt
                 CurrentPage = ApplicationPage.Account;
             }
         }
-
-        public bool CanChangePageToRegistration(object value)
+        /// <summary>
+        /// Metoda sprawdzająca czy komenda zmiany strony na stronę rejestracji może zostać wykonana
+        /// </summary>
+        /// <param name="value">>Parametr komendy - null</param>
+        /// <returns>True</returns>
+        private bool CanChangePageToRegistration(object value)
         {
             return true;
         }
-
-       
-
+        /// <summary>
+        /// Metoda zmieniająca napisy na przyciskach podczas logowania/wylogowywania się
+        /// </summary>
         public void ChangeButtonsTexts()
         {
             if (logged == true)

@@ -1,13 +1,24 @@
-﻿namespace Projekt
+﻿using System;
+
+namespace Projekt
 {
+    /// <summary>
+    /// Klasa reprezentująca klasę pierwszą w lini lotniczej Lufthansa
+    /// </summary>
     public class Lufthansa_First : Lufthansa
     {
+        /// <summary>
+        /// Konstruktor kopiujący po klasie bazowej
+        /// </summary>
         public Lufthansa_First(BasicFlight bf) : base(bf)
         {
             Name = "Klasa Pierwsza";
             NameAndPrice = "Klasa Pierwsza " + GetPrice(passengersNumber, childrenNumber) + " zł";
         }
-
+        /// <summary>
+        /// Metoda opisująca klasę podróży 
+        /// </summary>
+        /// <returns>Opis klasy podróży</returns>
         public override string Describe()
         {
             return "Klasa Pierwsza Lufthansy\nCzęsto drobiazgi i małe przyjemności mogą sprawić, że chwila staje się wyjątkowa.Na lotnisku docelowym czeka osobisty " +
@@ -24,10 +35,15 @@
                 " dla zmysłów.Każda chwila należy do Ciebie\n\nKulinarne kreacje oraz doskonałe wina\nChwile kulinarnych rozkoszy to jeden z ważnych punktów podczas podróży " +
                 "Klasą Pierwszą Lufthansy.\n\nŚwiat rozrywki\nDoskonała oferta wielkiego świata rozrywki. Nasz program rozrywki w Klasie Pierwszej zapewnia szeroki wybór.";
         }
-
+        /// <summary>
+        ///  Metoda obliczająca cenę dla tej klasy podróży
+        ///  <param name="passengers">Liczba dorosłych pasażerów</param>
+        ///  <param name="children">Liczba dzieci</param>
+        ///  <returns>Cena lotu</returns>
+        /// </summary
         public override double GetPrice(int passengers, int children)
         {
-            return 7 * Price * (passengers + children * 0.75);
+            return Math.Round(7 * Price * (passengers + children * 0.75), 2);
         }
     }
 }

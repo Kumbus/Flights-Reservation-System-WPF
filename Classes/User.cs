@@ -4,18 +4,47 @@
 
 namespace Projekt
 {
+    /// <summary>
+    /// Klasa odpowiadająca użytkownikowi korzystajaćemu z aplikacji
+    /// </summary>
     public class User
     {
+        /// <summary>
+        /// Właściwość odpowiadająca ID użytkownika
+        /// </summary>
         public int Id { get; set; }
+        /// <summary>
+        /// Właściwość odpowiadająca imieniu użytkownika
+        /// </summary>
         public string Name { get; set; }
+        /// <summary>
+        /// Właściwość odpowiadająca nazwisku użytkownika
+        /// </summary>
         public string Surname { get; set; }
+        /// <summary>
+        /// Właściwość odpowiadająca emailowi użytkownika
+        /// </summary>
         public string Email { get; set; }
+        /// <summary>
+        /// Właściwość odpowiadająca hasłu do konta użytkownika
+        /// </summary>
         public string Password { get; set; }
+        /// <summary>
+        /// Właściwość odpowiadająca dacie urodzenia użytkownika
+        /// </summary>
         public string Birthday { get; set; }
+        /// <summary>
+        /// Właściwość odpowiadająca numerowi telefonu użytkownika
+        /// </summary>
         public string PhoneNumber { get; set; }
+        /// <summary>
+        /// String pozwalający na połączenie się z bazą danych
+        /// </summary>
 
         private string connectionString = "SERVER=127.0.0.1;DATABASE=loty;UID=root;PASSWORD=pR0tuberancj@915";
-
+        /// <summary>
+        /// Konstruktor przypisujący wszystkie dane
+        /// </summary>
         public User(string name, string surame, string email, string password, string birthday, string phoneNumber)
         {
             Name = name;
@@ -26,7 +55,10 @@ namespace Projekt
             PhoneNumber = phoneNumber;
         }
 
-
+        /// <summary>
+        /// Metoda sprawdzająca w bazie danych czy istnieje już użytkownik na podany adres email
+        /// </summary>
+        /// <returns>True jeśli nie istnieje konto na podany adres email, false jeśli istnieje</returns>
         public bool Check()
         {
             MySqlConnection connection = new MySqlConnection(connectionString);
@@ -40,7 +72,9 @@ namespace Projekt
             connection.Close();
             return false;
         }
-
+        /// <summary>
+        /// Metoda zapisująca użytkownika do bazy danych
+        /// </summary>
         public void SaveToDataBase()
         {
             MySqlConnection connection = new MySqlConnection(connectionString);
@@ -51,7 +85,10 @@ namespace Projekt
             cmd.ExecuteNonQuery();
             connection.Close();
         }
-
+        /// <summary>
+        /// Metoda przypisująca użytkownikowi, który się loguje dane z bazy danych po zalogowaniu i sprawdzająca czy istnieje użytkownik o podanym adresie email i haśle
+        /// </summary>
+        /// <returns>True jeśli użytkownik istnieje i hasło jest poprawne, false jeśli nie istnieje lub zostało podane złe hasło</returns>
         public bool Login()
         {
             MySqlConnection connection = new MySqlConnection(connectionString);

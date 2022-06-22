@@ -1,16 +1,31 @@
 ﻿namespace Projekt
 {
+    /// <summary>
+    /// Klasa reprezentująca fotel w samolocie
+    /// </summary>
     public class Seat
     {
+        /// <summary>
+        /// Właściwość, która odpowiada czy fotel jest zajęty(false) czy wolny(true)
+        /// </summary>
         public bool Free { get; set; } 
-
+        /// <summary>
+        /// Właściwość odpowiadakąca czy fotel w oknie wyboru miejsc jest naciśnięty czy nie 
+        /// </summary>
         public bool Clicked { get; set; } = false;
-
+        /// <summary>
+        /// Numer siedzenia
+        /// </summary>
         public string Number { get; set; }
-
+        /// <summary>
+        /// Klasa podróży w jakiej znajduje się fotel
+        /// </summary>
         public string Class { get; set; }
 
-
+        /// <summary>
+        /// Przypisuje nazwę na podstawie lini lotniczej i numeru siedzenia
+        /// </summary>
+        /// <param name="name">Linia lotnicza</param>
         public void SetClass(string name)
         {
             switch(name)

@@ -5,6 +5,10 @@ using System.Windows.Markup;
 
 namespace Projekt
 {    
+    /// <summary>
+    /// Klasa bazowa dla innych konwerterów wartości
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public abstract class BaseValueConverter<T> : MarkupExtension, IValueConverter
         where T : class, new()
     {
@@ -14,23 +18,19 @@ namespace Projekt
 
         #endregion
 
-        #region Markup Extension Methods
+
 
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
             return mConverter ?? (mConverter = new T());
         }
 
-        #endregion
-
-        #region Value Converter Methods
 
 
         public abstract object Convert(object value, Type targetType, object parameter, CultureInfo culture);
 
         public abstract object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture);
 
-        #endregion
     }
 }
 

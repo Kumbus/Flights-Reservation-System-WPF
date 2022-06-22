@@ -1,13 +1,24 @@
-﻿namespace Projekt
+﻿using System;
+
+namespace Projekt
 {
+    /// <summary>
+    /// Klasa reprezentująca klasę biznesową w lini lotniczej Emirates
+    /// </summary>
     public class Emirates_Business : Emirates
     {
+        /// <summary>
+        /// Konstruktor kopiujący po klasie bazowej
+        /// </summary>
         public Emirates_Business(BasicFlight bf) : base(bf)
         {
             Name = "Klasa biznes";
             NameAndPrice = "Biznes " + GetPrice(passengersNumber, childrenNumber) + " zł";
         }
-
+        /// <summary>
+        /// Metoda opisująca klasę podróży 
+        /// </summary>
+        /// <returns>Opis klasy podróży</returns>
         public override string Describe()
         {
             return "Nasza klasa biznes - zobacz, czego możesz oczekiwać w klasie biznes Emirates.\n\nWyśpij się podczas lotu\nFotel, który płynnie rozkłada się w płaskie łóżko z miękkim, wygodnym materacem i przytulnym kocem.Słodkich snów!" +
@@ -17,10 +28,15 @@
                 " i kremu do twarzy po balsam do ust i piankę do golenia.\n\nPodróżuj bez stresu\nZarezerwuj bezpłatną usługę prywatnego kierowcy w drodze na lotnisko i z lotniska.\n\nPoczekalnie na lotnisku\nPrzed wylotem poszukaj inspiracji w naszych" +
                 " poczekalniach dla klasy biznes na lotniskach.";
         }
-
+        /// <summary>
+        ///  Metoda obliczająca cenę dla tej klasy podróży
+        ///  <param name="passengers">Liczba dorosłych pasażerów</param>
+        ///  <param name="children">Liczba dzieci</param>
+        ///  <returns>Cena lotu</returns>
+        /// </summary
         public override double GetPrice(int passengers, int children)
         {
-            return 6.22 * Price * (passengers + children * 0.65);
+            return Math.Round(6.22 * Price * (passengers + children * 0.65), 2);
         }
     }
 }

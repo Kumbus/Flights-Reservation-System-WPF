@@ -4,19 +4,36 @@ using System.Windows.Input;
 
 namespace Projekt
 {
+    /// <summary>
+    /// Klasa odpowiadająca za zachowanie strony rejestracji
+    /// </summary>
     public class RegistrationPageViewModel : BaseViewModel
     {
+        /// <summary>
+        /// Konstruktor
+        /// </summary>
         public RegistrationPageViewModel()
         {
             RegisterCommand = new RelayCommand(Register, CanRegister);
             BackToMainPageCommand = new RelayCommand(BackToMainPage, CanBackToMainPage);
         }
-
+        /// <summary>
+        /// Imię podawane przy rejestracji
+        /// </summary>
         public string Name { get; set; } = "";
+        /// <summary>
+        /// Nazwisko podawane przy rejestracji
+        /// </summary>
         public string Surname { get; set; } = "";
+        /// <summary>
+        /// Email podawany przy rejestracji
+        /// </summary>
         public string Email { get; set; } = "";
 
         #region Hasło i sprawdzanie hasła
+        /// <summary>
+        /// Hasło podawane przy rejestracji
+        /// </summary>
         public string Password
         {
             get
@@ -39,11 +56,21 @@ namespace Projekt
                 }
             }
         }
-
+        /// <summary>
+        /// Poprzednia długość hasła podczas wpisywania go
+        /// </summary>
         private int previousLenght = 0;
+        /// <summary>
+        /// Zakropkowane hasło potrzebne do zwracania przez publiczną właściwość
+        /// </summary>
         private string password = "";
+        /// <summary>
+        /// Prawdziwe hasło zapisywane później do bazy danych
+        /// </summary>
         private string realPassword = "";
-
+        /// <summary>
+        /// Hasło sprawdzające podawane przy rejestracji
+        /// </summary>
         public string PasswordCheck
         {
             get
@@ -66,37 +93,62 @@ namespace Projekt
                 }
             }
         }
-
+        /// <summary>
+        /// Poprzednia długość hasła sprawdzającego podczas wpisywania go
+        /// </summary>
         private int previousLenghtCheck = 0;
+        /// <summary>
+        /// Zakropkowane hasło sprawdzające potrzebne do zwracania przez publiczną właściwość
+        /// </summary>
         private string passwordCheck = "";
+        /// <summary>
+        /// Prawdziwe hasło potrzebne do porównywania
+        /// </summary>
         private string realPasswordCheck = "";
 
         #endregion
+        /// <summary>
+        /// Numer telefonu podawany przy rejestracji
+        /// </summary>
         public string PhoneNumber { get; set; } = "";
+        /// <summary>
+        /// Właściwość przechowująca tekst, który jest wyświetlony kiedy wprowadzone dane są nieprawidłowe
+        /// </summary>
         public string WrongData { get; set; } = "";
 
         #region Data urodzenia
+        /// <summary>
+        /// Data urodzenia potrzebna do getera publicznej właściwości
+        /// </summary>
         private DateTime calendarDate { get; set; } = DateTime.Now;
-
+        /// <summary>
+        /// Data urodzenia w postaci tekstowej, która jest wyświetlana na stronie
+        /// </summary>
         public string CalendarDateString { get; set; } = DateTime.Now.ToString("yyyy-MM-dd");
-
+        /// <summary>
+        /// Właściwość przypsująca tekstowi datę wybraną przez użytkownika w kalendarzu
+        /// </summary>
         public DateTime CalendarDate
         {
             get { return calendarDate; }
             set
             {
                 CalendarDateString = value.ToString("yyyy-MM-dd");
-                //CalendarDateString = CalendarDateString.Substring(0, 10);
             }
         }
         #endregion
 
         #region Rejestracja 
+        /// <summary>
+        /// Komenda odpowiedzialna za przycisk rejestracji
+        /// </summary>
         public ICommand RegisterCommand { get; set; }
-
+        /// <summary>
+        /// Metoda wykonywana przez komendę rejestrująca użytkownika jeśli dane są poprawne
+        /// </summary>
+        /// <param name="value">Parametr komendy - null</param>
         private void Register(object value)
         {
-            //sprawdzanie wartości regexem i odpowiednie komunikaty
             if (CheckData())
             {
                 User user = new User(Name, Surname, Email, realPassword, CalendarDateString, PhoneNumber);
@@ -113,7 +165,11 @@ namespace Projekt
                 }
             }
         }
-        
+        /// <summary>
+        /// Metoda sprawdzająca czy można wykonać komendę
+        /// </summary>
+        /// <param name="value">Parametr komendy - null</param>
+        /// <returns></returns>
         public bool CanRegister(object value)
         {
             return true;
@@ -121,6 +177,10 @@ namespace Projekt
         #endregion
 
         #region Sprawdzanie poprawności danych przy rejestracji
+        /// <summary>
+        /// Metoda sprawdzająca czy wpisane dane są poprawne
+        /// </summary>
+        /// <returns>True jeśli dane są poprawne, false jeśli dan enie są poprawne</returns>
         private bool CheckData()
         {
             Regex checkNameAndSurname = new Regex(@"^[\p{L}\p{M}][\p{L}\p{M}\-.' ]*[\p{L}\p{M}]$");
@@ -158,14 +218,24 @@ namespace Projekt
         #endregion
 
         #region Powrót na stronę główną
+        /// <summary>
+        /// Komenda zmieniająca stronę na stronę początkową
+        /// </summary>
         public ICommand BackToMainPageCommand { get; set; }
-
+        /// <summary>
+        /// Metoda wykonywana przez komendę do zmiany strony na stronę początkową
+        /// </summary>
+        /// <param name="value">Parametr komendy - null</param>
         private void BackToMainPage(object value)
         {
             WindowViewModel mainWindow = WindowViewModel.GetInstanceWindowViewModel();
             mainWindow.CurrentPage = ApplicationPage.Main;
         }
-
+        /// <summary>
+        /// Metoda sprawdzająca czy komenda zmiany strony na stronę początkową może zostać wykonana
+        /// </summary>
+        /// <param name="value">>Parametr komendy - null</param>
+        /// <returns>True</returns>
         private bool CanBackToMainPage(object value)
         {
             return true;

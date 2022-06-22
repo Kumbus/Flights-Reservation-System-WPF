@@ -1,6 +1,8 @@
 ﻿namespace Projekt
 {
-
+    /// <summary>
+    /// Enum odpowiadający stronom w aplikacji
+    /// </summary>
     public enum ApplicationPage
     {
 

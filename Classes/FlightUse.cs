@@ -4,10 +4,23 @@ using System.Collections.ObjectModel;
 
 namespace Projekt
 {
+    /// <summary>
+    /// Klasa pomagająca przy obsłudze lotów
+    /// </summary>
     public class FlightUse
     {
+        /// <summary>
+        /// Kolekcja lotów, które pasują wyszukiwaniu
+        /// </summary>
         public static ObservableCollection<BasicFlight>? Flights { get; set; }
+        /// <summary>
+        /// Zmienna potrzebna do identyfikacji lotu podczas przechodzenia do szczegółów lotu
+        /// </summary>
         public static string Indeks { get; set; }
+        /// <summary>
+        /// Metoda wyszukująca loty w bazie danych, które pasują do parametów podanych przez użytkownika
+        /// </summary>
+        /// <param name="flightToSearch">Lot z parametrami podanymi przez użytkownika</param>
         public void Search(BasicFlight flightToSearch)
         {
             string connectionString = "SERVER=127.0.0.1;DATABASE=loty;UID=root;PASSWORD=pR0tuberancj@915";
@@ -58,7 +71,10 @@ namespace Projekt
             connection.Close();
 
         }
-
+        /// <summary>
+        /// Metoda znajdująca lot wybrany przez użytkownika z dostępnych lotów
+        /// </summary>
+        /// <returns>Lot wybrany użytkownika</returns>
         public static BasicFlight FindOne()
         {
             for(int i = 0; i < Flights.Count; i++)

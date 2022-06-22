@@ -4,6 +4,9 @@ using System.Globalization;
 
 namespace Projekt
 {
+    /// <summary>
+    /// Konwerter nazwy lini lotniczej na ścieżkę do zdjęcia logo tej lini
+    /// </summary>
     internal class AirlineToLogoValueConverter : BaseValueConverter<AirlineToLogoValueConverter>
     {
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)

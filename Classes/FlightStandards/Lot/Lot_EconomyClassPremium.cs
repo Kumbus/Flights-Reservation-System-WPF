@@ -1,14 +1,25 @@
-﻿namespace Projekt
-{ 
+﻿using System;
+
+namespace Projekt
+{
+    /// <summary>
+    /// Klasa reprezentująca klasę ekonomiczną premium w lini lotniczej LOT
+    /// </summary>
     public class Lot_EconomyClassPremium : Lot
     {
+        /// <summary>
+        /// Konstruktor kopiujący po klasie bazowej
+        /// </summary>
         public Lot_EconomyClassPremium(BasicFlight bf) : base(bf)
         {
             Name = "Economy Class Premium";
             NameAndPrice = "Economy Class Premium " + GetPrice(passengersNumber, childrenNumber) + " zł";
         }
-
-    public override string Describe()
+        /// <summary>
+        /// Metoda opisująca klasę podróży 
+        /// </summary>
+        /// <returns>Opis klasy podróży</returns>
+        public override string Describe()
     {
             return "LOT Premium Economy\n\nWiększy bagaż, wygodniejsze fotele, więcej usług dodatkowych - LOT Premium Economy to nowoczesna klasa podróży gwarantująca idealny " +
                 "wypoczynek nie tylko podczas lotu.A wszystko w bardzo przystępnej cenie. Skorzystaj z wyjątkowych udogodnień podczas podróży Dreamlinerem!\n\n" +
@@ -30,10 +41,15 @@
                 "przed końcem podróży. Do naszego menu wybieramy najlepsze wina z różnych regionów świata, oceniając ich jakość oraz bogactwo smaku i aromatu.Na pokładzie naszych samolotów " +
                 "znajdziesz również doskonałe wina z polskich winnic.Białe czy czerwone? Wytrawne czy półsłodkie? Wybór należy do Ciebie!";
     }
-
+        /// <summary>
+        ///  Metoda obliczająca cenę dla tej klasy podróży
+        ///  <param name="passengers">Liczba dorosłych pasażerów</param>
+        ///  <param name="children">Liczba dzieci</param>
+        ///  <returns>Cena lotu</returns>
+        /// </summary
         public override double GetPrice(int passengers, int children)
         {
-            return 1.8 * Price * (passengers + children * 0.90);
+            return Math.Round(1.8 * Price * (passengers + children * 0.90), 2);
         }
     }
 }

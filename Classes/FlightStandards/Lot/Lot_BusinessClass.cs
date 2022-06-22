@@ -1,13 +1,24 @@
-﻿namespace Projekt
+﻿using System;
+
+namespace Projekt
 {
+    /// <summary>
+    /// Klasa reprezentująca klasę biznesową w lini lotniczej LOT
+    /// </summary>
     public class Lot_BusinessClass : Lot
     {
+        /// <summary>
+        /// Konstruktor kopiujący po klasie bazowej
+        /// </summary>
         public Lot_BusinessClass(BasicFlight bf) : base(bf)
         {
             Name = "Business Class";
             NameAndPrice = "Business Class " + GetPrice(passengersNumber, childrenNumber) + " zł";
         }
-
+        /// <summary>
+        /// Metoda opisująca klasę podróży 
+        /// </summary>
+        /// <returns>Opis klasy podróży</returns>
         public override string Describe()
         {
             return "LOT Business Class\n\nDzięki LOT Business Class każda podróż staje się unikatowa i niezapomniana. To chwile tylko dla ciebie - dzięki nim poczujesz się zrelaksowany" +
@@ -33,10 +44,15 @@
                 " a także porto i szampana. Interesujesz się enoturystyką? Na pokładach naszych samolotów zasmakujesz w znakomitych winach z polskich winnic. " +
                 "Zachęcamy do odkrywania nowych nut smakowych i aromatów! ";
         }
-
+        /// <summary>
+        ///  Metoda obliczająca cenę dla tej klasy podróży
+        ///  <param name="passengers">Liczba dorosłych pasażerów</param>
+        ///  <param name="children">Liczba dzieci</param>
+        ///  <returns>Cena lotu</returns>
+        /// </summary
         public override double GetPrice(int passengers, int children)
         {
-            return 4.8 * Price * (passengers + children * 0.90);
+            return Math.Round(4.8 * Price * (passengers + children * 0.90), 2);
         }
     }
 }

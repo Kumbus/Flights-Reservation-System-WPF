@@ -5,15 +5,37 @@ using System.Windows.Input;
 
 namespace Projekt
 {
+    /// <summary>
+    /// Klasa odpowiadająca za zachowanie strony podsumowania
     public class SummaryPageViewModel : BaseViewModel
     {
+        /// <summary>
+        /// Lot, który jest rezerwowany
+        /// </summary>
         public BasicFlight MyFlight { get; set; }
+        /// <summary>
+        /// Cena za lot
+        /// </summary>
         private double price = new double();
+        /// <summary>
+        /// Cena za lot jako tekst
+        /// </summary>
         public string StringPrice { get; set; } = "";
+        /// <summary>
+        /// Lista wybranych miejsc podczas rezerwacji
+        /// </summary>
         public List<Seat> ChosenSeats { get; set; } = new List<Seat>();
+        /// <summary>
+        /// Lista klas podróży dla danej lini lorniczej
+        /// </summary>
         private List<BasicFlight> FlightClasses  = new List<BasicFlight>();
-
+        /// <summary>
+        /// Kolekcja foteli w samolocie
+        /// </summary>
         public ObservableCollection<Seat> Seats { get; set; } = new ObservableCollection<Seat>();
+        /// <summary>
+        /// Konstruktor 
+        /// </summary>
         public SummaryPageViewModel()
         {
             Messenger.Default.Register<BasicFlight>(this, (Flight) =>
@@ -36,6 +58,9 @@ namespace Projekt
         }
 
         #region Przypsanie danych
+        /// <summary>
+        /// Tworzy listę wybranych krzeseł
+        /// </summary>
         private void MakeCollection()
         {
 
@@ -45,7 +70,9 @@ namespace Projekt
                 Seats.Add(ChosenSeats[i]);
             }
         }
-
+        /// <summary>
+        /// Ustawia cenę w zależności od wybranych miejsc
+        /// </summary>
         private void SetPrize()
         {
             int i = 0;
@@ -108,8 +135,14 @@ namespace Projekt
         #endregion
 
         #region Przejdź do płatności
+        /// <summary>
+        /// Komenda zmieniająca stronę na stronę płatności
+        /// </summary>
         public ICommand GoToPaymentPageCommand { get; set; }
-
+        /// <summary>
+        /// Metoda wykonywana przez komendę do zmiany strony na stronę płatności
+        /// </summary>
+        /// <param name="value">Parametr komendy - null</param>
         private void GoToPaymentPage(object value)
         {
             WindowViewModel mainWindow = WindowViewModel.GetInstanceWindowViewModel();
@@ -117,7 +150,11 @@ namespace Projekt
             Messenger.Default.Send(MyFlight);
             Messenger.Default.Send(ChosenSeats);
         }
-
+        /// <summary>
+        /// Metoda sprawdzająca czy komenda zmiany strony na stronę płatności może zostać wykonana
+        /// </summary>
+        /// <param name="value">>Parametr komendy - null</param>
+        /// <returns>True</returns>
         private bool CanGoToPaymentPage(object value)
         {
             return true;
@@ -126,15 +163,25 @@ namespace Projekt
         #endregion
 
         #region Powrót do wyboru foteli
+        /// <summary>
+        /// Komenda zmieniająca stronę na stronę wyboru miejsc
+        /// </summary>
         public ICommand GoBackCommand { get; set; }
-
+        /// <summary>
+        /// Metoda wykonywana przez komendę do zmiany strony na stronę wyboru miejsc
+        /// </summary>
+        /// <param name="value">Parametr komendy - null</param>
         private void GoBack(object value)
         {
             WindowViewModel mainWindow = WindowViewModel.GetInstanceWindowViewModel();
             mainWindow.CurrentPage = ApplicationPage.SeatChoice;
 
         }
-
+        /// <summary>
+        /// Metoda sprawdzająca czy komenda zmiany strony na stronę wyboru miejsc może zostać wykonana
+        /// </summary>
+        /// <param name="value">>Parametr komendy - null</param>
+        /// <returns>True</returns>
         private bool CanGoBack(object value)
         {
             return true;

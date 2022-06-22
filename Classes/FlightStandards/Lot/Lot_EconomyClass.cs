@@ -1,13 +1,24 @@
-﻿namespace Projekt
+﻿using System;
+
+namespace Projekt
 {
+    /// <summary>
+    /// Klasa reprezentująca klasę ekonomiczną w lini lotniczej LOT
+    /// </summary>
     public class Lot_EconomyClass : Lot
     {
+        /// <summary>
+        /// Konstruktor kopiujący po klasie bazowej
+        /// </summary>
         public Lot_EconomyClass(BasicFlight bf) : base(bf)
         {
             Name = "Economy Class";
             NameAndPrice = "Economy Class " + GetPrice(passengersNumber, childrenNumber) + " zł";
         }
-
+        /// <summary>
+        /// Metoda opisująca klasę podróży 
+        /// </summary>
+        /// <returns>Opis klasy podróży</returns>
         public override string Describe()
         {
             return "LOT Economy Class\n\nLataj komfortowo w wygodnym fotelu w przestronnej kabinie samolotu Dreamliner, poznaj zalety podróżowania klasą ekonomiczną LOT:\n\n" +
@@ -22,10 +33,15 @@
                 "napoje: kawa, herbata, woda, napoje gazowane i soki owocowe, a także wino białe i czerwone oraz piwo.W każdej chwili możesz skorzystać z naszego płatnego menu LOT Sky Bar " +
                 "lub wypróbować posiłek z klasy LOT Premium Economy korzystając z usługi Zamów na pokład posiłek klasy Premium.";
         }
-
+        /// <summary>
+        ///  Metoda obliczająca cenę dla tej klasy podróży
+        ///  <param name="passengers">Liczba dorosłych pasażerów</param>
+        ///  <param name="children">Liczba dzieci</param>
+        ///  <returns>Cena lotu</returns>
+        /// </summary
         public override double GetPrice(int passengers, int children)
         {
-            return Price * (passengers + children * 0.90);
+            return Math.Round(Price * (passengers + children * 0.90), 2);
         }
     }
 }
